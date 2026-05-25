@@ -2,1469 +2,363 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soumya Sankar · novel quantum matter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=JetBrains+Mono:wght@300..500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Soumya's Portfolio · TERMINAL</title>
     <style>
-        /* ----- CSS variables for light/dark themes ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            /* light theme (default) */
-            --primary-bg: #ffffff;
-            --secondary-bg: #f8fafc;
-            --tertiary-bg: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --accent-blue: #1e4b8a;
-            --accent-purple: #6b21a5;
-            --accent-cyan: #0e7490;
-            --accent-pink: #b91c6b;
-            --gradient-primary: linear-gradient(135deg, #1e4b8a, #6b21a5, #0e7490, #b91c6b);
-            --gradient-secondary: linear-gradient(135deg, #0e7490, #1e4b8a, #6b21a5);
-            --gradient-dark: linear-gradient(135deg, #ffffff, #f1f5f9);
-            --card-border: rgba(30, 75, 138, 0.25);
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --shadow-glow: 0 15px 35px rgba(30, 75, 138, 0.2), 0 0 0 1px rgba(107, 33, 165, 0.15);
-            --glow-blue: 0 0 20px rgba(30, 75, 138, 0.25);
-            --glow-purple: 0 0 20px rgba(107, 33, 165, 0.25);
-            --glow-cyan: 0 0 20px rgba(14, 116, 144, 0.25);
-            --glow-pink: 0 0 20px rgba(185, 28, 107, 0.25);
-            --grid-color1: rgba(30, 75, 138, 0.08);
-            --grid-color2: rgba(107, 33, 165, 0.08);
-            --lattice-opacity: 0.2;
-            --particle-alpha: 0.25;
-            --line-color: rgba(30,75,138,0.15);
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --header-border: rgba(30, 75, 138, 0.15);
-        }
-
-        body.dark {
-            --primary-bg: #0f172a;
-            --secondary-bg: #1e293b;
-            --tertiary-bg: #334155;
-            --card-bg: rgba(30, 41, 59, 0.85);
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-blue: #60a5fa;
-            --accent-purple: #c084fc;
-            --accent-cyan: #22d3ee;
-            --accent-pink: #fb7185;
-            --gradient-primary: linear-gradient(135deg, #60a5fa, #c084fc, #22d3ee, #fb7185);
-            --gradient-secondary: linear-gradient(135deg, #22d3ee, #60a5fa, #c084fc);
-            --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
-            --card-border: rgba(96, 165, 250, 0.25);
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 15px 35px rgba(96, 165, 250, 0.3), 0 0 0 1px rgba(192, 132, 252, 0.2);
-            --glow-blue: 0 0 20px rgba(96, 165, 250, 0.4);
-            --glow-purple: 0 0 20px rgba(192, 132, 252, 0.4);
-            --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.4);
-            --glow-pink: 0 0 20px rgba(251, 113, 133, 0.4);
-            --grid-color1: rgba(96, 165, 250, 0.1);
-            --grid-color2: rgba(192, 132, 252, 0.1);
-            --lattice-opacity: 0.25;
-            --particle-alpha: 0.3;
-            --line-color: rgba(96,165,250,0.2);
-            --header-bg: rgba(15, 23, 42, 0.85);
-            --header-border: rgba(96, 165, 250, 0.2);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            line-height: 1.7;
-            overflow-x: hidden;
-            position: relative;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* ----- BACKGROUND (using variables) ----- */
-        .background-effects {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .animated-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--grid-color1) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color2) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 30s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(30px,30px); }
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            opacity: 0.08;
-            filter: blur(60px);
-            animation: levitate 12s infinite alternate ease-in-out;
-        }
-
-        .floating-shape:nth-child(1) { width: 400px; height: 400px; top: 10%; left: 5%; }
-        .floating-shape:nth-child(2) { width: 300px; height: 300px; top: 60%; right: 10%; background: var(--gradient-secondary); animation-delay: -3s; }
-        .floating-shape:nth-child(3) { width: 250px; height: 250px; bottom: 20%; left: 15%; animation-delay: -6s; }
-
-        @keyframes levitate {
-            0% { transform: translate(0,0) scale(1); }
-            100% { transform: translate(40px, -40px) scale(1.1); }
-        }
-
-        .floating-lattices {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .lattice-icon {
-            position: absolute;
-            opacity: var(--lattice-opacity);
-            background: transparent;
-            filter: drop-shadow(0 0 15px currentColor);
-            animation-duration: 8s, 10s, 6s;
-            animation-timing-function: ease-in-out, ease-in-out, linear;
-            animation-iteration-count: infinite, infinite, infinite;
-            animation-direction: alternate, alternate, normal;
-            color: var(--accent-blue);
-        }
-
-        .lattice-icon.sc {
-            width: 280px;
-            height: 280px;
-            top: 5%;
-            left: 2%;
-            background-image: 
-                linear-gradient(90deg, var(--accent-blue) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
-            background-size: 40px 40px;
-            color: var(--accent-blue);
-            animation-name: fastDrift1, fastTilt, spinSlow;
-        }
-
-        .lattice-icon.bcc {
-            width: 320px;
-            height: 320px;
-            bottom: 0%;
-            right: 0%;
-            background-image: 
-                radial-gradient(circle at 30% 30%, var(--accent-purple) 5px, transparent 5px),
-                radial-gradient(circle at 70% 70%, var(--accent-purple) 5px, transparent 5px),
-                radial-gradient(circle at 50% 50%, var(--accent-purple) 6px, transparent 6px),
-                linear-gradient(90deg, var(--accent-purple) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-purple) 1px, transparent 1px);
-            background-size: 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
-            color: var(--accent-purple);
-            animation-name: fastDrift2, fastBounce, spinMedium;
-        }
-
-        .lattice-icon.fcc {
-            width: 300px;
-            height: 300px;
-            top: 20%;
-            left: 20%;
-            background-image: 
-                radial-gradient(circle at 25% 25%, var(--accent-cyan) 5px, transparent 5px),
-                radial-gradient(circle at 75% 25%, var(--accent-cyan) 5px, transparent 5px),
-                radial-gradient(circle at 25% 75%, var(--accent-cyan) 5px, transparent 5px),
-                radial-gradient(circle at 75% 75%, var(--accent-cyan) 5px, transparent 5px),
-                linear-gradient(90deg, var(--accent-cyan) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-cyan) 1px, transparent 1px);
-            background-size: 70px 70px, 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
-            color: var(--accent-cyan);
-            animation-name: fastDrift3, fastWobble, spinFast;
-        }
-
-        .lattice-icon.lieb {
-            width: 380px;
-            height: 380px;
-            bottom: 10%;
-            left: 30%;
-            background-image: 
-                radial-gradient(circle at 50% 50%, var(--accent-pink) 6px, transparent 6px),
-                radial-gradient(circle at 20% 20%, var(--accent-pink) 4px, transparent 4px),
-                radial-gradient(circle at 80% 20%, var(--accent-pink) 4px, transparent 4px),
-                radial-gradient(circle at 20% 80%, var(--accent-pink) 4px, transparent 4px),
-                radial-gradient(circle at 80% 80%, var(--accent-pink) 4px, transparent 4px),
-                linear-gradient(90deg, var(--accent-pink) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-pink) 1px, transparent 1px);
-            background-size: 120px 120px, 120px 120px, 120px 120px, 120px 120px, 120px 120px, 60px 60px, 60px 60px;
-            background-position: 60px 60px, 0 0, 120px 0, 0 120px, 120px 120px, 0 0, 0 0;
-            color: var(--accent-pink);
-            animation-name: fastDrift4, fastSwing, spinMedium;
-        }
-
-        .lattice-icon.kagome {
-            width: 340px;
-            height: 340px;
-            top: 60%;
-            right: 15%;
-            background: 
-                radial-gradient(circle at 50% 0%, var(--accent-blue) 7px, transparent 7px),
-                radial-gradient(circle at 75% 25%, var(--accent-blue) 7px, transparent 7px),
-                radial-gradient(circle at 75% 75%, var(--accent-blue) 7px, transparent 7px),
-                radial-gradient(circle at 50% 100%, var(--accent-blue) 7px, transparent 7px),
-                radial-gradient(circle at 25% 75%, var(--accent-blue) 7px, transparent 7px),
-                radial-gradient(circle at 25% 25%, var(--accent-blue) 7px, transparent 7px);
-            background-size: 160px 160px, 160px 160px, 160px 160px, 160px 160px, 160px 160px, 160px 160px;
-            background-repeat: no-repeat;
-            background-position: 80px 0, 140px 35px, 140px 125px, 80px 160px, 20px 125px, 20px 35px;
-            color: var(--accent-blue);
-            animation-name: fastDrift5, fastSkew, spinSlow;
-        }
-
-        .lattice-icon.pyrochlore {
-            width: 300px;
-            height: 300px;
-            top: 15%;
-            right: 30%;
-            background: 
-                radial-gradient(circle at 30% 30%, var(--accent-purple) 6px, transparent 6px),
-                radial-gradient(circle at 70% 30%, var(--accent-purple) 6px, transparent 6px),
-                radial-gradient(circle at 30% 70%, var(--accent-purple) 6px, transparent 6px),
-                radial-gradient(circle at 70% 70%, var(--accent-purple) 6px, transparent 6px),
-                radial-gradient(circle at 50% 10%, var(--accent-purple) 6px, transparent 6px);
-            background-size: 150px 150px, 150px 150px, 150px 150px, 150px 150px, 150px 150px;
-            background-repeat: no-repeat;
-            background-position: 20px 20px, 110px 20px, 20px 110px, 110px 110px, 65px -20px;
-            color: var(--accent-purple);
-            animation-name: fastDrift6, fastWarp, spinFast;
-        }
-
-        .lattice-icon.altermagnet {
-            width: 250px;
-            height: 250px;
-            bottom: 25%;
-            left: 10%;
-            font-family: 'Inter', sans-serif;
-            font-size: 45px;
-            font-weight: bold;
-            color: var(--accent-pink);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            background: transparent;
-            opacity: var(--lattice-opacity);
-            animation-name: fastDrift7, fastPulse, spinMedium;
-        }
-        .lattice-icon.altermagnet span {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow: 0 0 20px currentColor;
-        }
-
-        .lattice-icon.honeycomb {
-            width: 300px;
-            height: 300px;
-            top: 40%;
-            left: 45%;
-            background: repeating-linear-gradient(60deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px),
-                        repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px);
-            opacity: var(--lattice-opacity);
-            animation-name: fastDrift8, fastZigZag, spinSlow;
-            color: var(--accent-cyan);
-        }
-
-        .lattice-icon.triangular {
-            width: 320px;
-            height: 320px;
-            bottom: 5%;
-            right: 35%;
-            background: repeating-linear-gradient(30deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px),
-                        repeating-linear-gradient(90deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px);
-            opacity: var(--lattice-opacity);
-            animation-name: fastDrift9, fastDiagonal, spinFast;
-            color: var(--accent-purple);
-        }
-
-        /* Fast and dynamic keyframes (unchanged) */
-        @keyframes fastDrift1 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, -20px); } }
-        @keyframes fastDrift2 { 0% { transform: translate(0,0); } 100% { transform: translate(-25px, 30px); } }
-        @keyframes fastDrift3 { 0% { transform: translate(0,0); } 100% { transform: translate(20px, 20px); } }
-        @keyframes fastDrift4 { 0% { transform: translate(0,0); } 100% { transform: translate(-30px, -15px); } }
-        @keyframes fastDrift5 { 0% { transform: translate(0,0); } 100% { transform: translate(25px, -25px); } }
-        @keyframes fastDrift6 { 0% { transform: translate(0,0); } 100% { transform: translate(-20px, 25px); } }
-        @keyframes fastDrift7 { 0% { transform: translate(0,0); } 100% { transform: translate(15px, -20px); } }
-        @keyframes fastDrift8 { 0% { transform: translate(0,0); } 100% { transform: translate(-15px, 30px); } }
-        @keyframes fastDrift9 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, 15px); } }
-
-        @keyframes fastTilt { 0% { transform: rotate(-5deg) scale(1); } 100% { transform: rotate(10deg) scale(1.05); } }
-        @keyframes fastBounce { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
-        @keyframes fastWobble { 0% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
-        @keyframes fastSwing { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(8deg) scale(1.1); } 100% { transform: rotate(-8deg) scale(1); } }
-        @keyframes fastSkew { 0% { transform: skew(0deg, 0deg); } 100% { transform: skew(5deg, -5deg); } }
-        @keyframes fastWarp { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.1) rotate(10deg); } }
-        @keyframes fastPulse { 0% { opacity: var(--lattice-opacity); } 50% { opacity: calc(var(--lattice-opacity) + 0.1); } 100% { opacity: var(--lattice-opacity); } }
-        @keyframes fastZigZag { 0% { transform: translateX(0); } 33% { transform: translateX(20px); } 66% { transform: translateX(-20px); } 100% { transform: translateX(0); } }
-        @keyframes fastDiagonal { 0% { transform: translate(0,0); } 50% { transform: translate(20px, -20px); } 100% { transform: translate(-20px, 20px); } }
-
-        @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(20deg); } }
-        @keyframes spinMedium { 0% { transform: rotate(0deg); } 100% { transform: rotate(40deg); } }
-        @keyframes spinFast { 0% { transform: rotate(0deg); } 100% { transform: rotate(60deg); } }
-
-        #particles-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* ----- container & sections ----- */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 130px 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            margin-bottom: 70px;
-            display: inline-block;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 4px;
-            box-shadow: var(--glow-blue);
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 25px 0;
-            background: var(--header-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--header-border);
-            transition: all 0.4s ease;
-        }
-
-        header.scrolled {
-            padding: 15px 0;
-            background: var(--header-bg);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 2.2rem;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .kagome-logo {
-            width: 100px;
-            height: 100px;
-            margin-right: 20px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.1);
-            border-radius: 24px;
-            box-shadow: 0 0 40px var(--glow-blue);
-            transition: transform 0.4s ease;
-        }
-
-        .kagome-logo:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .kagome-atom {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            box-shadow: 0 0 20px currentColor;
-        }
-
-        .kagome-atom:nth-child(1) { background: var(--accent-blue); top: 15px; left: 40px; }
-        .kagome-atom:nth-child(2) { background: var(--accent-purple); top: 30px; right: 25px; }
-        .kagome-atom:nth-child(3) { background: var(--accent-cyan); bottom: 30px; right: 25px; }
-        .kagome-atom:nth-child(4) { background: var(--accent-pink); bottom: 15px; left: 40px; }
-        .kagome-atom:nth-child(5) { background: var(--accent-purple); bottom: 30px; left: 10px; }
-        .kagome-atom:nth-child(6) { background: var(--accent-blue); top: 30px; left: 10px; }
-        .kagome-atom:nth-child(7) {
-            background: var(--text-primary);
-            width: 24px;
-            height: 24px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 30px var(--accent-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: var(--primary-bg);
-            font-weight: bold;
-        }
-        .kagome-atom:nth-child(7)::after {
-            content: "↑↓";
-            font-size: 14px;
-            color: var(--primary-bg);
-            font-weight: 800;
-        }
-
-        .kagome-line {
-            position: absolute;
-            background: var(--text-secondary);
-            box-shadow: 0 0 10px var(--accent-blue);
-            height: 2px;
-            width: 40px;
-            transform-origin: 0 0;
-        }
-
-        .line1 { top: 24px; left: 50px; transform: rotate(30deg); width: 38px; }
-        .line2 { top: 24px; left: 20px; transform: rotate(-30deg); width: 38px; }
-        .line3 { top: 50px; left: 12px; transform: rotate(90deg); width: 45px; }
-        .line4 { bottom: 24px; left: 20px; transform: rotate(30deg); width: 38px; }
-        .line5 { bottom: 24px; left: 50px; transform: rotate(-30deg); width: 38px; }
-        .line6 { top: 50px; left: 60px; transform: rotate(90deg); width: 45px; }
-
-        .spin-up, .spin-down {
-            position: absolute;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 0 0 10px currentColor;
-        }
-        .spin-up { color: var(--accent-pink); }
-        .spin-down { color: var(--accent-blue); }
-        .spin-up:nth-of-type(1) { top: 5px; left: 15px; transform: rotate(-20deg); }
-        .spin-up:nth-of-type(2) { bottom: 5px; right: 15px; transform: rotate(160deg); }
-        .spin-down:nth-of-type(1) { top: 5px; right: 15px; transform: rotate(200deg); }
-        .spin-down:nth-of-type(2) { bottom: 5px; left: 15px; transform: rotate(20deg); }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            padding: 6px 0;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-left: 20px;
-            transition: transform 0.3s;
-        }
-        .theme-toggle:hover {
-            transform: rotate(30deg);
-        }
-
-        .hero {
-            padding-top: 180px;
+            background: #0c0c0c;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            color: #a3e635;
+            line-height: 1.5;
+            padding: 2rem;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 12px 26px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            box-shadow: var(--glow-blue);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%,100% { box-shadow: 0 0 0 0 var(--accent-blue); }
-            50% { box-shadow: 0 0 0 10px transparent; }
-        }
-
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            line-height: 1;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .hero-text h2 {
-            font-size: 2.2rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 0;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .btn {
-            padding: 16px 38px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.07) translateY(-5px);
-            box-shadow: var(--glow-purple);
-        }
-
-        .btn-secondary {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(var(--accent-blue), 0.1);
-            transform: scale(1.05) translateY(-3px);
-            border-color: var(--accent-blue);
-        }
-
-        /* ----- about, publications, etc ----- */
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-
-        .about-highlight {
-            background: var(--gradient-dark);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 4px solid var(--accent-cyan);
-            margin: 40px 0;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .about-highlight p {
-            font-style: italic;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            margin: 0;
-        }
-
-        .education {
-            position: sticky;
-            top: 120px;
-        }
-
-        .education-item {
-            background: var(--card-bg);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 25px;
-            border-radius: 0 15px 15px 0;
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-
-        .education-item:hover {
-            transform: translateX(10px);
-            border-left-color: var(--accent-purple);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .education-year {
-            color: var(--accent-cyan);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .publication-item {
-            background: var(--card-bg);
-            padding: 35px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .publication-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-glow);
-            border-color: rgba(var(--accent-purple), 0.3);
-        }
-
-        .publication-title {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .publication-journal {
-            color: var(--accent-pink);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 5px;
-            display: inline-block;
-            padding: 4px 16px;
-            background: rgba(var(--accent-pink), 0.08);
-            border-radius: 30px;
-        }
-
-        .publication-authors {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        .publication-authors strong {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
-        }
-
-        .expertise-card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 15px;
-            transition: all 0.4s ease;
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-soft);
-            position: relative;
+        .terminal {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0a0f0a;
+            border: 1px solid #2a5a2a;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(163, 230, 53, 0.2);
             overflow: hidden;
         }
 
-        .expertise-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(var(--accent-purple), 0.3);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 0;
-            background: var(--gradient-primary);
-            transition: height 0.4s ease;
-        }
-
-        .expertise-card:hover::before {
-            height: 100%;
-        }
-
-        .expertise-icon {
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .expertise-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .expertise-list li {
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 25px;
-            font-size: 1rem;
-        }
-
-        .expertise-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-pink);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .teaching-grid, .awards-grid, .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .teaching-card, .award-card, .leadership-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .teaching-card:hover, .award-card:hover, .leadership-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(var(--accent-purple), 0.3);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .teaching-semester, .award-year, .leadership-period {
-            color: var(--accent-cyan);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .teaching-course, .award-title, .leadership-role {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-
-        .teaching-role, .award-details, .leadership-details {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
-            color: var(--text-primary);
-        }
-
-        .contact-info p {
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-
-        .contact-item {
+        .terminal-bar {
+            background: #1a1f1a;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid #2a5a2a;
             display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
+            gap: 0.6rem;
+        }
+        .window-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #5f5f5f;
+        }
+        .window-btn.red { background: #ff5f56; }
+        .window-btn.yellow { background: #ffbd2e; }
+        .window-btn.green { background: #27c93f; }
+
+        .terminal-content {
+            padding: 1.8rem 2rem 2rem;
+            overflow-x: auto;
         }
 
-        .contact-item:hover {
-            transform: translateX(10px);
-            border-color: var(--accent-purple);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .contact-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-            flex-shrink: 0;
-            box-shadow: var(--glow-blue);
-        }
-
-        footer {
-            background: var(--secondary-bg);
-            padding: 80px 0 30px;
-            border-top: 1px solid rgba(var(--accent-pink), 0.15);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .footer-logo h3 {
-            font-size: 1.8rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-        }
-
-        .copyright {
+        .ascii {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 0.65rem;
+            line-height: 1.2;
+            color: #a3e635;
+            margin-bottom: 2rem;
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            overflow-x: auto;
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            border-radius: 30px;
-            background: var(--gradient-primary);
-            color: white;
+        .line {
+            margin-bottom: 1rem;
+            font-family: monospace;
+        }
+        .prompt {
+            color: #6fcf97;
+            font-weight: bold;
+        }
+        .cmd {
+            color: #e6db74;
+        }
+        .output {
+            margin-left: 1.5rem;
+            margin-top: 0.3rem;
+            margin-bottom: 1rem;
+            border-left: 2px solid #2a5a2a;
+            padding-left: 1rem;
+        }
+
+        .pub-item, .award-item, .teaching-item, .patent-item {
+            margin-bottom: 1.2rem;
+        }
+        .pub-title, .patent-title {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+        .pub-journal, .patent-ref {
+            color: #5dade2;
+        }
+        .pub-authors {
+            color: #b0b0b0;
+            font-size: 0.85rem;
+        }
+        .badge {
+            color: #e67e22;
+        }
+        hr {
+            border-color: #2a5a2a;
+            margin: 1rem 0;
+        }
+        a {
+            color: #a3e635;
+            text-decoration: none;
+            border-bottom: 1px dashed #a3e635;
+        }
+        a:hover {
+            color: #c0ff80;
+        }
+        .blinking-cursor {
+            background-color: #a3e635;
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #5a7a5a;
+            border-top: 1px solid #2a5a2a;
+            padding-top: 1rem;
+        }
+        .command-input {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .command-input span {
+            color: #6fcf97;
+        }
+        .fake-input {
+            background: #1a2a1a;
+            border: 1px solid #3a7a3a;
+            padding: 0.3rem 0.6rem;
+            font-family: monospace;
+            color: #a3e635;
+            outline: none;
+            min-width: 200px;
+        }
+        button {
+            background: #2a4a2a;
             border: none;
-            font-size: 1.8rem;
+            color: #a3e635;
+            font-family: monospace;
+            padding: 0.3rem 0.8rem;
             cursor: pointer;
-            box-shadow: var(--glow-blue);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.4s;
-            z-index: 999;
         }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: scale(1.2) rotate(360deg);
-        }
-
-        .fade-in {
-            animation: slideUpFade 0.9s cubic-bezier(0.2,0.9,0.3,1) forwards;
-        }
-
-        @keyframes slideUpFade {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 1100px) {
-            .hero-text h1 { font-size: 4rem; }
-            .about-content { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 900px) {
-            .nav-links {
-                position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background: var(--card-bg); flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s; backdrop-filter: blur(20px); border-right: 1px solid var(--accent-blue);
-            }
-            .nav-links.active { left: 0; }
-            .mobile-menu-btn { display: block; }
-            .hero-text h1 { font-size: 3rem; }
-            .hero-text h2 { font-size: 1.8rem; }
-        }
-
-        @media (max-width: 600px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text h2 { font-size: 1.5rem; }
-            .cta-buttons { flex-direction: column; }
-            .kagome-logo { width: 80px; height: 80px; }
+        button:hover {
+            background: #3a6a3a;
         }
     </style>
 </head>
 <body>
-    <div class="background-effects">
-        <div class="animated-grid"></div>
-        <div class="floating-lattices">
-            <div class="lattice-icon sc"></div>
-            <div class="lattice-icon bcc"></div>
-            <div class="lattice-icon fcc"></div>
-            <div class="lattice-icon lieb"></div>
-            <div class="lattice-icon kagome"></div>
-            <div class="lattice-icon pyrochlore"></div>
-            <div class="lattice-icon altermagnet">
-                <span>↑</span><span>↓</span><span>↑</span><span>↓</span>
-            </div>
-            <div class="lattice-icon honeycomb"></div>
-            <div class="lattice-icon triangular"></div>
-        </div>
-        <div class="floating-shapes">
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
-        </div>
+<div class="terminal">
+    <div class="terminal-bar">
+        <div class="window-btn red"></div>
+        <div class="window-btn yellow"></div>
+        <div class="window-btn green"></div>
+        <span style="margin-left: auto; font-size: 0.7rem;">soumya@portfolio:~</span>
     </div>
-    <canvas id="particles-canvas"></canvas>
+    <div class="terminal-content">
+        <!-- ASCII art – MIT style, with name -->
+        <div class="ascii">
+██████╗ ██████╗ █████╗ ██╗      ██╗   ██╗██████╗ ███████╗███████╗ █████╗ ██████╗  ██████╗██╗  ██╗
+██╔══██╗██╔══██╗██╔══██╗██║      ██║   ██║██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║  ██║
+██████╔╝██████╔╝███████║██║      ██║   ██║██████╔╝█████╗  ███████╗███████║██████╔╝██║     ███████║
+██╔═══╝ ██╔══██╗██╔══██║██║      ██║   ██║██╔══██╗██╔══╝  ╚════██║██╔══██║██╔══██╗██║     ██╔══██║
+██║     ██║  ██║██║  ██║███████╗╚██████╔╝██║  ██║███████╗███████║██║  ██║██║  ██║╚██████╗██║  ██║
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                                    ███████╗ ██████╗ ██╗   ██╗███╗   ███╗██╗   ██╗ █████╗ 
+                                    ██╔════╝██╔═══██╗██║   ██║████╗ ████║╚██╗ ██╔╝██╔══██╗
+                                    ███████╗██║   ██║██║   ██║██╔████╔██║ ╚████╔╝ ███████║
+                                    ╚════██║██║   ██║██║   ██║██║╚██╔╝██║  ╚██╔╝  ██╔══██║
+                                    ███████║╚██████╔╝╚██████╔╝██║ ╚═╝ ██║   ██║   ██║  ██║
+                                    ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝
+        </div>
 
-    <header id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="kagome-logo">
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-atom"></div>
-                    <div class="kagome-line line1"></div>
-                    <div class="kagome-line line2"></div>
-                    <div class="kagome-line line3"></div>
-                    <div class="kagome-line line4"></div>
-                    <div class="kagome-line line5"></div>
-                    <div class="kagome-line line6"></div>
-                    <div class="spin-up">↑</div>
-                    <div class="spin-up">↑</div>
-                    <div class="spin-down">↓</div>
-                    <div class="spin-down">↓</div>
-                </div>
-                <span>Soumya Sankar</span>
-            </a>
-            <div style="display: flex; align-items: center;">
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#teaching">Teaching</a></li>
-                    <li><a href="#awards">Awards</a></li>
-                    <li><a href="#leadership">Leadership</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                    <i class="fas fa-sun"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <!-- welcome -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">whoami</span>
+        </div>
+        <div class="output">
+            Soumya Sankar — experimental quantum matter physicist, Ph.D. candidate @ HKUST.
+            Specializing in topological kagome magnets, altermagnets, and Berry curvature phenomena.
+        </div>
+
+        <!-- about -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">cat about.md</span>
+        </div>
+        <div class="output">
+            I synthesize thin films using molecular beam epitaxy and explore nonlinear Hall effects, 
+            anomalous transport, and quantum geometry. My goal is to uncover novel electronic states 
+            for next‑generation quantum technologies.
+        </div>
+
+        <!-- publications (no PDF links) -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">ls -la publications/</span>
+        </div>
+        <div class="output">
+            <div class="pub-item">
+                <div class="pub-title">▸ Distinguishing and Separating In-Plane Hall Responses</div>
+                <div class="pub-journal">arXiv:2604.20227 (2026)</div>
+                <div class="pub-authors"><strong>S. Sankar</strong> and 3 other authors</div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">▸ Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</div>
+                <div class="pub-journal">Physical Review X 16, 011009 (2026)</div>
+                <div class="pub-authors">C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <strong>S. Sankar</strong>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck</div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">▸ Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</div>
+                <div class="pub-journal">arXiv:2511.10471 (2025) — Submitted</div>
+                <div class="pub-authors"><strong>S. Sankar</strong>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck</div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">▸ Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</div>
+                <div class="pub-journal">Nature Communications 17, 423 (2025)</div>
+                <div class="pub-authors"><strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck</div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">▸ Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</div>
+                <div class="pub-journal">Physical Review X 14, 021046 (2024)</div>
+                <div class="pub-authors"><strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck</div>
             </div>
         </div>
-    </header>
 
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <div class="hero-badge">🔬 novel quantum matter · experimentalist</div>
-                <div class="hero-text">
-                    <h1>Soumya Sankar</h1>
-                    <h2>experimental quantum materials physicist</h2>
-                    <div class="cta-buttons">
-                        <a href="#publications" class="btn btn-primary"><i class="fas fa-file-alt"></i> publications</a>
-                        <a href="#contact" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> connect</a>
-                    </div>
-                </div>
+        <!-- patent (simplified) -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">ls patents/</span>
+        </div>
+        <div class="output">
+            <div class="patent-item">
+                <div class="patent-title">▸ Circuit and measurement design for sensing magnetic fields using the anomalous in-plane Hall effect</div>
+                <div class="patent-ref">Provisional patent application filed</div>
+                <div class="pub-authors">Inventor: Soumya Sankar</div>
             </div>
         </div>
-    </section>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am an experimental physicist dedicated to uncovering novel quantum phenomena in condensed matter systems. My research bridges materials synthesis, nanofabrication, and quantum transport measurements to explore emergent properties in topological materials.</p>
-                    <div class="about-highlight">
-                        <p>"My work focuses on the intersection of topology, symmetry, and electron correlations in quantum materials, with particular emphasis on kagome lattices and altermagnets for next-generation quantum technologies."</p>
-                    </div>
-                    <p>Using molecular beam epitaxy, I synthesize high-quality thin films of kagome compounds like FeSn, Fe₃Sn, and Co₃Sn. Through advanced nanofabrication techniques, I create devices to probe their quantum transport properties, including nonlinear Hall effects, anomalous in-plane Hall responses, and Berry curvature phenomena at room temperature.</p>
-                </div>
-                <div class="education">
-                    <div class="education-item">
-                        <div class="education-year">2021 – PRESENT</div>
-                        <h3>Ph.D. in Physics</h3>
-                        <p>The Hong Kong University of Science and Technology</p>
-                        <p style="color: var(--accent-cyan); margin-top: 8px;">Specialization: Quantum Materials & Topological Phenomena</p>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-year">2017 – 2019</div>
-                        <h3>M.Sc. in Physics</h3>
-                        <p>Central University of Karnataka</p>
-                        <p style="color: var(--text-muted); margin-top: 5px;">First Class • CGPA: 8.29/10.00</p>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-year">2014 – 2017</div>
-                        <h3>B.Sc. in Physics</h3>
-                        <p>Utkal University</p>
-                        <p style="color: var(--text-muted); margin-top: 5px;">First Class with Distinction • Score: 85.5/100</p>
-                    </div>
-                </div>
-            </div>
+        <!-- teaching -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">./show_teaching.sh</span>
         </div>
-    </section>
-
-    <section id="publications">
-        <div class="container">
-            <h2 class="section-title">Publications</h2>
-            <div class="publications-container">
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</h3>
-                        <div class="publication-journal">Physical Review X 16, 011009 (2026)</div>
-                    </div>
-                    <div class="publication-authors">C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <strong>S. Sankar</strong>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck</div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</h3>
-                        <div class="publication-journal">arXiv:2511.10471 (2025) — Submitted</div>
-                    </div>
-                    <div class="publication-authors"><strong>S. Sankar</strong>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck</div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</h3>
-                        <div class="publication-journal">Nature Communications 17, 423 (2025)</div>
-                    </div>
-                    <div class="publication-authors"><strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck</div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</h3>
-                        <div class="publication-journal">Physical Review X 14, 021046 (2024)</div>
-                    </div>
-                    <div class="publication-authors"><strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck</div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Visualizing the localized electrons of a kagome flat band</h3>
-                        <div class="publication-journal">Physical Review Research 5, 043269 (2023)</div>
-                    </div>
-                    <div class="publication-authors">C. Chen, J. Zheng, R. Yu, <strong>S. Sankar</strong>, K. T. Law, H. C. Po, B. Jäck</div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <h3 class="publication-title">Giant Photoresponsivity of Transfer-Free Grown Fluorographene-MoS2 Heterostructured Ultra-Stable Transistors</h3>
-                        <div class="publication-journal">Material Today 51, 85-94 (2021)</div>
-                    </div>
-                    <div class="publication-authors">R. Sharma, P. Sharma, K. R. Sahoo, <strong>S. Sankar</strong>, V.P.S. Awana, M. Kumar, T. N. Narayanan</div>
-                </div>
-            </div>
+        <div class="output">
+            <div><span class="badge">[SPRING 2021-22]</span> PHYS 3152 – Methods of Experimental Physics I (TA)</div>
+            <div><span class="badge">[FALL 2022-23]</span> PHYS 3152 – Methods of Experimental Physics I (TA)</div>
+            <div><span class="badge">[SPRING 2022-23]</span> PHYS 1314 – Honors General Physics II (TA)</div>
+            <div><span class="badge">[FALL 2023-24]</span> PHYS 1003 – Energy and Related Environmental Issues (TA)</div>
         </div>
-    </section>
 
-    <section id="expertise">
-        <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon"><i class="fas fa-layer-group"></i></div>
-                    <h3>Thin‑Film Synthesis</h3>
-                    <ul class="expertise-list">
-                        <li>Molecular Beam Epitaxy (MBE) of kagome compounds</li>
-                        <li>Real-time RHEED monitoring & analysis</li>
-                        <li>Thin-film growth optimization</li>
-                        <li>XRD, XRR, phi-scans analysis</li>
-                        <li>High-temperature annealing processes</li>
-                    </ul>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Nanofabrication</h3>
-                    <ul class="expertise-list">
-                        <li>Multi-step optical & e-beam lithography</li>
-                        <li>Hall bar device fabrication (6- & 12-terminal)</li>
-                        <li>Microstructured Hall bars of altermagnet CrSb</li>
-                        <li>Focused Ion Beam (FIB) milling & TEM sample prep</li>
-                        <li>Device prototyping & optimization</li>
-                        <li>Cleanroom protocols & contamination control</li>
-                    </ul>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Advanced Characterization</h3>
-                    <ul class="expertise-list">
-                        <li>STEM/TEM for atomic-scale imaging</li>
-                        <li>AFM & SEM surface analysis</li>
-                        <li>Nonlinear Hall effect measurements</li>
-                        <li>In-plane electric Hall effect</li>
-                        <li>Full-wave mixing & harmonic measurements</li>
-                        <li>Low-temperature magnetotransport (1.5K - 300K)</li>
-                    </ul>
-                </div>
-            </div>
+        <!-- awards -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">cat awards.txt</span>
         </div>
-    </section>
-
-    <section id="teaching">
-        <div class="container">
-            <h2 class="section-title">Teaching Experience</h2>
-            <div class="teaching-grid">
-                <div class="teaching-card"><div class="teaching-semester">SPRING 2021-22</div><h3 class="teaching-course">PHYS 3152</h3><p class="teaching-role">Teaching Assistant - Methods of Experimental Physics I</p><p>HKUST</p></div>
-                <div class="teaching-card"><div class="teaching-semester">FALL 2022-23</div><h3 class="teaching-course">PHYS 3152</h3><p class="teaching-role">Teaching Assistant - Methods of Experimental Physics I</p><p>HKUST</p></div>
-                <div class="teaching-card"><div class="teaching-semester">SPRING 2022-23</div><h3 class="teaching-course">PHYS 1314</h3><p class="teaching-role">Teaching Assistant - Honors General Physics II</p><p>HKUST</p></div>
-                <div class="teaching-card"><div class="teaching-semester">FALL 2023-24</div><h3 class="teaching-course">PHYS 1003</h3><p class="teaching-role">Teaching Assistant - Energy and Related Environmental Issues</p><p>HKUST</p></div>
-            </div>
+        <div class="output">
+            🏆 Hong Kong UGC Travel Grant (2024, 2023)<br>
+            🏆 HKUST Postgraduate Scholarship (2021-2025)<br>
+            🏆 Indo-Max Planck Partner Group Fellowship (2018-2019)
         </div>
-    </section>
 
-    <section id="awards">
-        <div class="container">
-            <h2 class="section-title">Awards & Fellowships</h2>
-            <div class="awards-grid">
-                <div class="award-card"><div class="award-year">2024</div><h3 class="award-title">Hong Kong UGC Travel Grant</h3><p class="award-details">APS March Meeting 2024, Minneapolis, USA</p></div>
-                <div class="award-card"><div class="award-year">2023</div><h3 class="award-title">Hong Kong UGC Travel Grant</h3><p class="award-details">APS March Meeting 2023, Las Vegas, USA</p></div>
-                <div class="award-card"><div class="award-year">2021-2025</div><h3 class="award-title">HKUST Postgraduate Scholarship (PGS)</h3><p class="award-details">For Ph.D. studies at HKUST</p></div>
-                <div class="award-card"><div class="award-year">2018-2019</div><h3 class="award-title">Indo-Max Planck Partner Group Fellowship</h3><p class="award-details">Research fellowship for advanced physics studies</p></div>
-            </div>
+        <!-- expertise -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">echo $EXPERTISE</span>
         </div>
-    </section>
-
-    <!-- New Leadership Section -->
-    <section id="leadership">
-        <div class="container">
-            <h2 class="section-title">Leadership & Service</h2>
-            <div class="leadership-grid">
-                <div class="leadership-card">
-                    <div class="leadership-period">YEAR 02</div>
-                    <h3 class="leadership-role">Student Representative</h3>
-                    <p class="leadership-details">Department of Physics, HKUST<br>Advocated for graduate student concerns and facilitated department-student communication.</p>
-                </div>
-                <div class="leadership-card">
-                    <div class="leadership-period">YEAR 04</div>
-                    <h3 class="leadership-role">Student Representative</h3>
-                    <p class="leadership-details">Department of Physics, HKUST<br>Advocated for graduate student concerns and facilitated department-student communication.</p>
-                </div>
-                <div class="leadership-card">
-                    <div class="leadership-period">SEPT 2025 – PRESENT</div>
-                    <h3 class="leadership-role">Research Assistant</h3>
-                    <p class="leadership-details">HKUST, Hong Kong<br>Conducting experimental research on quantum materials, assisting in lab management and mentoring junior students.</p>
-                </div>
-            </div>
+        <div class="output">
+            MBE · e‑beam lithography · Hall bar nanofabrication · magnetotransport (1.5K – 300K)<br>
+            nonlinear Hall · Berry curvature · kagome magnets (FeSn, Co₃Sn₂S₂) · altermagnets (CrSb, RuO₂)
         </div>
-    </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Get in touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Let's collaborate</h3>
-                    <p>I'm always interested in discussing novel quantum materials, research collaborations, or potential opportunities. Feel free to reach out!</p>
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>ssankar@connect.ust.hk</p></div></div>
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><p>The Hong Kong University of Science and Technology<br>Clear Water Bay, Kowloon, Hong Kong SAR</p></div></div>
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-graduation-cap"></i></div><div><h4>Department</h4><p>Department of Physics · Quantum Materials Research Group</p></div></div>
-                </div>
-            </div>
+        <!-- contact -->
+        <div class="line">
+            <span class="prompt">$</span> <span class="cmd">grep contact ~/.profile</span>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo"><h3>Novel Quantum Matter</h3><p style="color:var(--text-muted)">Exploring emergent phenomena at the quantum frontier</p></div>
-            </div>
-            <div class="copyright">
-                <p>© 2025 Soumya Sankar · Ph.D. candidate, Department of Physics, HKUST</p>
-            </div>
+        <div class="output">
+            📧 ssankar@connect.ust.hk &nbsp;&nbsp;|&nbsp;&nbsp;📍 HKUST, Clear Water Bay, Hong Kong<br>
+            🔬 Department of Physics – Quantum Materials Research Group
         </div>
-    </footer>
 
-    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+        <hr>
 
-    <script>
-        (function() {
-            // Theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            const body = document.body;
-            const icon = themeToggle.querySelector('i');
+        <!-- interactive terminal -->
+        <div class="command-input">
+            <span class="prompt">$</span>
+            <input type="text" id="terminalInput" class="fake-input" placeholder="type 'help' or 'clear'...">
+            <button id="runCmd">⏎ run</button>
+        </div>
+        <div id="dynamicOutput" style="margin-top: 0.8rem; margin-left: 1.5rem; font-family: monospace;"></div>
 
-            if (localStorage.getItem('theme') === 'dark') {
-                body.classList.add('dark');
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
+        <footer>
+            [ Soumya's Portfolio – terminal edition ]<br>
+            <span class="blinking-cursor"></span>
+        </footer>
+    </div>
+</div>
 
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark');
-                if (body.classList.contains('dark')) {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
+<script>
+    const inputField = document.getElementById('terminalInput');
+    const outputDiv = document.getElementById('dynamicOutput');
+    const runBtn = document.getElementById('runCmd');
 
-            // Mobile menu
-            const menuBtn = document.getElementById('mobileMenuBtn');
-            const nav = document.getElementById('navLinks');
-            menuBtn.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
+    function executeCommand(cmd) {
+        const lower = cmd.trim().toLowerCase();
+        if (lower === 'help') {
+            return 'Available commands: help, clear, pubs, patent, teaching, awards, about, contact, expertise, cv';
+        } else if (lower === 'clear') {
+            outputDiv.innerHTML = '';
+            return null;
+        } else if (lower === 'pubs') {
+            return '→ Distinguishing and Separating In-Plane Hall Responses (arXiv:2604.20227, 2026)\n→ Nematic Order (PRX 2026)\n→ Nonlinear Hall altermagnet (arXiv, 2025)\n→ In-plane Hall effect (NatComm 2025)\n→ Berry curvature quadrupole (PRX 2024)';
+        } else if (lower === 'patent') {
+            return '📄 Circuit and measurement design for sensing magnetic fields using the anomalous in-plane Hall effect.\n   Provisional patent application filed – Inventor: Soumya Sankar';
+        } else if (lower === 'teaching') {
+            return 'TA: PHYS 3152 (2021-23), PHYS 1314 (2022-23), PHYS 1003 (2023-24)';
+        } else if (lower === 'awards') {
+            return '🏆 UGC Travel Grant (2024,2023) | HKUST PGS (2021-2025) | Indo-Max Planck Fellowship';
+        } else if (lower === 'about') {
+            return 'Experimental quantum materials physicist. Ph.D. candidate at HKUST studying topological kagome and altermagnetic systems.';
+        } else if (lower === 'contact') {
+            return 'Email: ssankar@connect.ust.hk | Location: HKUST, Hong Kong';
+        } else if (lower === 'expertise') {
+            return 'MBE, nanofabrication, magnetotransport, nonlinear Hall, Berry curvature, kagome & altermagnet thin films.';
+        } else if (lower === 'cv') {
+            return 'Full CV available upon request. Email me.';
+        } else {
+            return `Command not found: ${cmd}. Try 'help'.`;
+        }
+    }
 
-            const header = document.getElementById('header');
-            const btt = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 80);
-                btt.classList.toggle('show', window.scrollY > 600);
-            });
+    function handleCommand() {
+        const raw = inputField.value;
+        if (!raw.trim()) return;
+        const output = executeCommand(raw);
+        if (output !== null) {
+            const newLine = document.createElement('div');
+            newLine.innerHTML = `<span style="color:#6fcf97;">$></span> ${raw}<br><span style="color:#a3e635;">${output.replace(/\n/g,'<br>')}</span>`;
+            outputDiv.appendChild(newLine);
+            outputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        inputField.value = '';
+    }
 
-            document.querySelectorAll('.nav-links a, .btn[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.getAttribute('href');
-                    if(id === '#') return;
-                    const el = document.querySelector(id);
-                    if(el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
-                    if(window.innerWidth <= 900) nav.classList.remove('active');
-                });
-            });
+    runBtn.addEventListener('click', handleCommand);
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleCommand();
+    });
 
-            btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(e => e.isIntersecting && e.target.classList.add('fade-in'));
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
-            document.querySelectorAll('.about-text, .about-highlight, .education, .expertise-card, .teaching-card, .award-card, .leadership-card, .contact-info, .publication-item').forEach(el => {
-                el.style.opacity = '0';
-                observer.observe(el);
-            });
-
-            // Enhanced particle system
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let w = canvas.width = window.innerWidth;
-            let h = canvas.height = window.innerHeight;
-
-            function getColors() {
-                const isDark = body.classList.contains('dark');
-                return {
-                    blue: isDark ? '#60a5fa' : '#1e4b8a',
-                    purple: isDark ? '#c084fc' : '#6b21a5',
-                    cyan: isDark ? '#22d3ee' : '#0e7490',
-                };
-            }
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                }
-                reset() {
-                    this.x = Math.random() * w;
-                    this.y = Math.random() * h;
-                    this.size = Math.random() * 4 + 1.5;
-                    this.vx = (Math.random() - 0.5) * 0.8;
-                    this.vy = (Math.random() - 0.5) * 0.8;
-                    const cols = getColors();
-                    const r = Math.random();
-                    this.color = r > 0.33 ? cols.blue : (r > 0.66 ? cols.purple : cols.cyan);
-                    this.alpha = Math.random() * 0.3 + 0.15;
-                }
-                update() {
-                    this.x += this.vx + Math.sin(Date.now()*0.002)*0.1;
-                    this.y += this.vy + Math.cos(Date.now()*0.002)*0.1;
-                    if(this.x > w) this.x = 0; else if(this.x < 0) this.x = w;
-                    if(this.y > h) this.y = 0; else if(this.y < 0) this.y = h;
-                }
-                draw() {
-                    ctx.globalAlpha = this.alpha;
-                    ctx.fillStyle = this.color;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-                    ctx.fill();
-                }
-            }
-
-            let particles = Array.from({ length: 120 }, () => new Particle());
-
-            function animate() {
-                ctx.clearRect(0,0,w,h);
-                particles.forEach(p => { p.update(); p.draw(); });
-                const cols = getColors();
-                ctx.strokeStyle = body.classList.contains('dark') ? 'rgba(96,165,250,0.2)' : 'rgba(30,75,138,0.15)';
-                ctx.lineWidth = 1.2;
-                for(let i=0; i<particles.length; i++) {
-                    for(let j=i+1; j<particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const d = Math.hypot(dx, dy);
-                        if(d < 140) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            window.addEventListener('resize', () => {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
-                particles.forEach(p => p.reset());
-            });
-
-            themeToggle.addEventListener('click', () => {
-                particles.forEach(p => {
-                    const cols = getColors();
-                    const r = Math.random();
-                    p.color = r > 0.33 ? cols.blue : (r > 0.66 ? cols.purple : cols.cyan);
-                });
-            });
-
-            document.querySelector('.hero-content').classList.add('fade-in');
-        })();
-    </script>
+    outputDiv.innerHTML = '<div><span style="color:#6fcf97;">$></span> <span style="color:#aaa;">Type "help" to see available commands. Try "pubs" or "patent".</span></div>';
+</script>
 </body>
-</html>
+</html>   
