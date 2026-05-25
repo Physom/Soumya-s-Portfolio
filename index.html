@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Soumya's Portfolio · TERMINAL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -161,6 +162,11 @@
         button:hover {
             background: #3a6a3a;
         }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .ascii { font-size: 0.45rem; }
+        }
     </style>
 </head>
 <body>
@@ -172,7 +178,6 @@
         <span style="margin-left: auto; font-size: 0.7rem;">soumya@portfolio:~</span>
     </div>
     <div class="terminal-content">
-        <!-- ASCII art – MIT style, with name -->
         <div class="ascii">
 ██████╗ ██████╗ █████╗ ██╗      ██╗   ██╗██████╗ ███████╗███████╗ █████╗ ██████╗  ██████╗██╗  ██╗
 ██╔══██╗██╔══██╗██╔══██╗██║      ██║   ██║██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║  ██║
@@ -188,7 +193,6 @@
                                     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝
         </div>
 
-        <!-- welcome -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">whoami</span>
         </div>
@@ -197,7 +201,6 @@
             Specializing in topological kagome magnets, altermagnets, and Berry curvature phenomena.
         </div>
 
-        <!-- about -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">cat about.md</span>
         </div>
@@ -207,7 +210,6 @@
             for next‑generation quantum technologies.
         </div>
 
-        <!-- publications (no PDF links) -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">ls -la publications/</span>
         </div>
@@ -239,7 +241,6 @@
             </div>
         </div>
 
-        <!-- patent (simplified) -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">ls patents/</span>
         </div>
@@ -251,7 +252,6 @@
             </div>
         </div>
 
-        <!-- teaching -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">./show_teaching.sh</span>
         </div>
@@ -262,7 +262,6 @@
             <div><span class="badge">[FALL 2023-24]</span> PHYS 1003 – Energy and Related Environmental Issues (TA)</div>
         </div>
 
-        <!-- awards -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">cat awards.txt</span>
         </div>
@@ -272,7 +271,6 @@
             🏆 Indo-Max Planck Partner Group Fellowship (2018-2019)
         </div>
 
-        <!-- expertise -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">echo $EXPERTISE</span>
         </div>
@@ -281,7 +279,6 @@
             nonlinear Hall · Berry curvature · kagome magnets (FeSn, Co₃Sn₂S₂) · altermagnets (CrSb, RuO₂)
         </div>
 
-        <!-- contact -->
         <div class="line">
             <span class="prompt">$</span> <span class="cmd">grep contact ~/.profile</span>
         </div>
@@ -292,7 +289,6 @@
 
         <hr>
 
-        <!-- interactive terminal -->
         <div class="command-input">
             <span class="prompt">$</span>
             <input type="text" id="terminalInput" class="fake-input" placeholder="type 'help' or 'clear'...">
@@ -361,4 +357,4 @@
     outputDiv.innerHTML = '<div><span style="color:#6fcf97;">$></span> <span style="color:#aaa;">Type "help" to see available commands. Try "pubs" or "patent".</span></div>';
 </script>
 </body>
-</html>   
+</html>
