@@ -47,7 +47,6 @@
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
-            /* Quantum-inspired grid background */
             background-image:
                 linear-gradient(rgba(72, 202, 228, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(72, 202, 228, 0.04) 1px, transparent 1px);
@@ -319,9 +318,10 @@
         .entry-list li {
             position: relative;
             padding-left: 24px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--text-muted);
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
         .entry-list li:hover {
             color: #fff;
@@ -333,6 +333,14 @@
             color: var(--accent-cyan);
             font-weight: 600;
             text-shadow: 0 0 10px rgba(72, 202, 228, 0.3);
+        }
+        .entry-list li strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        .entry-list li em {
+            color: var(--accent-gold);
+            font-style: italic;
         }
 
         /* Expertise Tags */
@@ -696,6 +704,7 @@
         <ul class="nav-links">
             <li><a href="#preparation" class="active"><span class="icon">⚡</span> Preparation</a></li>
             <li><a href="#experience"><span class="icon">🔬</span> Experience</a></li>
+            <li><a href="#mentoring"><span class="icon">👥</span> Mentoring</a></li>
             <li><a href="#education"><span class="icon">🎓</span> Education</a></li>
             <li><a href="#expertise"><span class="icon">🧠</span> Expertise</a></li>
             <li><a href="#publications"><span class="icon">📄</span> Publications</a></li>
@@ -756,6 +765,23 @@
                         <li>Commissioned and assembled a new Molecular Beam Epitaxy (MBE) system for intermetallic thin film growth.</li>
                         <li>Designed and set up a low-temperature current-voltage (I-V) characterization system.</li>
                         <li>Experienced in synthesizing and characterizing devices based on intermetallic magnetic thin films.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MENTORING & SUPERVISION (NEW) ===== -->
+        <section id="mentoring" class="page-section fade-in">
+            <div class="container">
+                <h2 class="section-title">Mentoring &amp; Supervision</h2>
+                <div class="glass-card">
+                    <ul class="entry-list">
+                        <li><strong>Raghutheja Bollampally</strong> (UG at HKUST → Graduate student at <strong>KU Leuven</strong>, Belgium)</li>
+                        <li><strong>Yuqi Qin</strong> (UG at HUST, China → PhD student at <strong>HKUST Physics</strong>)</li>
+                        <li><strong>Ce Zheng</strong> (UG at HKUST → MPhil student at <strong>HKUST Physics</strong>)</li>
+                        <li><strong>Dominic Huang</strong> (UG student at <strong>HKUST</strong>)</li>
+                        <li><strong>Fanjiang Yei</strong> (UG at USTC → PhD student at <strong>Rice University</strong>, Computer Science)</li>
+                        <li><em>and more ...</em></li>
                     </ul>
                 </div>
             </div>
@@ -885,7 +911,7 @@
             </div>
         </section>
 
-        <!-- ===== PRESENTATIONS (UPDATED) ===== -->
+        <!-- ===== PRESENTATIONS ===== -->
         <section id="presentations" class="page-section fade-in">
             <div class="container">
                 <h2 class="section-title">Conference Presentations</h2>
@@ -902,14 +928,12 @@
                     <div class="conf-desc">Poster: “Mapping out the topological phase diagram of FeSn”</div>
                 </div>
 
-                <!-- NEW: TMS School 2023 -->
                 <div class="conf-item">
                     <div class="conf-title">Topological Material School (TMS) 2023</div>
                     <div class="conf-venue">Spain</div>
                     <div class="conf-desc">Attendee &amp; Poster Presentation</div>
                 </div>
 
-                <!-- NEW: Hong Kong Guangdong Macao Conference 2023 -->
                 <div class="conf-item">
                     <div class="conf-title">Hong Kong Guangdong Macao Conference 2023</div>
                     <div class="conf-venue">Hong Kong SAR</div>
