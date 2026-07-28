@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
     <style>
         /* ============================================
-           RESET & BASE (EXOTIC COSMIC THEME)
+           RESET & BASE (CRISP WHITE THEME)
         ============================================ */
         *,
         *::before,
@@ -20,17 +20,18 @@
             box-sizing: border-box;
         }
         :root {
-            --bg-primary: #07070e;
-            --bg-secondary: #0d0d1a;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-glow: rgba(72, 202, 228, 0.2);
-            --text-primary: #f0f4ff;
-            --text-muted: #9aa8c7;
-            --text-light: #6a7a99;
-            --accent-cyan: #48cae4;
-            --accent-gold: #fbbf24;
-            --accent-purple: #a78bfa;
-            --shadow-glow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --bg-primary: #f4f6fa;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --border-glow: rgba(14, 165, 233, 0.2);
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-light: #64748b;
+            --accent-cyan: #0ea5e9;
+            --accent-gold: #eab308;
+            --accent-purple: #8b5cf6;
+            --shadow-glow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 20px 60px rgba(14, 165, 233, 0.10);
             --radius: 16px;
             --sidebar-width: 260px;
             --font-sans: 'Inter', sans-serif;
@@ -48,8 +49,8 @@
             min-height: 100vh;
             overflow-x: hidden;
             background-image:
-                linear-gradient(rgba(72, 202, 228, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(72, 202, 228, 0.04) 1px, transparent 1px);
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         a {
@@ -70,7 +71,7 @@
         }
 
         /* ============================================
-           ANIMATED GLOWING ORBS
+           ANIMATED GLOWING ORBS (Soft light version)
         ============================================ */
         .bg-orb {
             position: fixed;
@@ -78,7 +79,7 @@
             right: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(72, 202, 228, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -90,7 +91,7 @@
             left: -10%;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.06) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -99,16 +100,16 @@
         @keyframes pulseGlow {
             0% {
                 transform: scale(0.8) translateX(0) rotate(0deg);
-                opacity: 0.3;
+                opacity: 0.4;
             }
             100% {
                 transform: scale(1.3) translateX(50px) rotate(5deg);
-                opacity: 0.7;
+                opacity: 0.8;
             }
         }
 
         /* ============================================
-           SIDEBAR NAVIGATION
+           SIDEBAR NAVIGATION (Light)
         ============================================ */
         .sidebar {
             position: fixed;
@@ -116,16 +117,17 @@
             left: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: rgba(7, 7, 14, 0.92);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border-right: 1px solid var(--border-glow);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 100;
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.02);
         }
         .sidebar .brand {
             font-family: var(--font-serif);
@@ -133,7 +135,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 48px;
-            background: linear-gradient(135deg, #fff 30%, var(--accent-cyan));
+            background: linear-gradient(135deg, #0f172a 30%, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -143,6 +145,7 @@
             font-size: 0.9rem;
             font-family: var(--font-sans);
             display: block;
+            color: var(--text-muted);
             -webkit-text-fill-color: var(--text-muted);
             background: none;
             font-weight: 400;
@@ -152,7 +155,7 @@
         .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             list-style: none;
         }
         .nav-links li a {
@@ -184,11 +187,11 @@
         }
         .nav-links li a:hover,
         .nav-links li a.active {
-            color: #fff;
-            background: rgba(72, 202, 228, 0.08);
-            border-color: var(--border-glow);
-            box-shadow: 0 0 30px rgba(72, 202, 228, 0.05);
-            transform: translateX(6px);
+            color: var(--text-primary);
+            background: rgba(14, 165, 233, 0.06);
+            border-color: rgba(14, 165, 233, 0.1);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.03);
+            transform: translateX(4px);
         }
         .nav-links li a:hover::before,
         .nav-links li a.active::before {
@@ -211,7 +214,7 @@
             margin-top: auto;
             font-size: 0.7rem;
             color: var(--text-light);
-            border-top: 1px solid var(--border-glow);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             padding-top: 20px;
             text-align: center;
             letter-spacing: 0.08em;
@@ -234,7 +237,7 @@
         ============================================ */
         .page-section {
             padding: 60px 0 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
             scroll-margin-top: 20px;
             transition: opacity 0.6s ease;
         }
@@ -247,19 +250,18 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 32px;
-            color: #fff;
+            color: var(--text-primary);
             display: inline-block;
             border-bottom: 3px solid var(--accent-cyan);
             padding-bottom: 6px;
-            text-shadow: 0 0 30px rgba(72, 202, 228, 0.15);
         }
 
-        /* Glass Cards */
+        /* Glass Cards (Light) */
         .glass-card {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
             border-radius: var(--radius);
             padding: 24px 28px;
             margin-bottom: 24px;
@@ -268,8 +270,8 @@
         }
         .glass-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(72, 202, 228, 0.4);
-            box-shadow: 0 16px 64px rgba(72, 202, 228, 0.08);
+            border-color: rgba(14, 165, 233, 0.15);
+            box-shadow: var(--shadow-hover);
         }
 
         .entry-header {
@@ -283,10 +285,10 @@
         .entry-title {
             font-weight: 700;
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--text-primary);
         }
         .entry-title a {
-            color: #fff;
+            color: var(--text-primary);
             border-bottom: none;
         }
         .entry-title a:hover {
@@ -297,10 +299,10 @@
             color: var(--text-light);
             font-weight: 400;
             white-space: nowrap;
-            background: rgba(72, 202, 228, 0.1);
+            background: rgba(14, 165, 233, 0.06);
             padding: 2px 12px;
             border-radius: 20px;
-            border: 1px solid rgba(72, 202, 228, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.08);
         }
         .entry-detail {
             font-size: 0.95rem;
@@ -324,7 +326,7 @@
             font-size: 0.95rem;
         }
         .entry-list li:hover {
-            color: #fff;
+            color: var(--text-primary);
         }
         .entry-list li::before {
             content: '▹';
@@ -332,15 +334,27 @@
             left: 0;
             color: var(--accent-cyan);
             font-weight: 600;
-            text-shadow: 0 0 10px rgba(72, 202, 228, 0.3);
         }
         .entry-list li strong {
-            color: #fff;
+            color: var(--text-primary);
             font-weight: 600;
         }
         .entry-list li em {
             color: var(--accent-gold);
             font-style: italic;
+        }
+
+        /* Teaching specific styling */
+        .teaching-sub {
+            font-weight: 600;
+            color: var(--accent-cyan);
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .teaching-duty {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-left: 4px;
         }
 
         /* Expertise Tags */
@@ -350,32 +364,31 @@
             gap: 12px 20px;
         }
         .tech-tag {
-            background: rgba(72, 202, 228, 0.06);
-            border: 1px solid rgba(72, 202, 228, 0.12);
+            background: rgba(14, 165, 233, 0.04);
+            border: 1px solid rgba(14, 165, 233, 0.08);
             border-radius: 40px;
             padding: 6px 18px;
             font-size: 0.85rem;
             color: var(--text-primary);
             transition: all 0.3s ease;
             display: inline-block;
-            backdrop-filter: blur(4px);
         }
         .tech-tag strong {
             color: var(--accent-cyan);
             font-weight: 600;
         }
         .tech-tag:hover {
-            background: rgba(72, 202, 228, 0.15);
+            background: rgba(14, 165, 233, 0.08);
             border-color: var(--accent-cyan);
             transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(72, 202, 228, 0.1);
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.04);
         }
 
         /* Publications */
         .pub-item {
             margin-bottom: 24px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         .pub-item:last-child {
             border-bottom: none;
@@ -388,7 +401,7 @@
             font-size: 0.95rem;
         }
         .pub-authors strong {
-            color: #fff;
+            color: var(--text-primary);
             font-weight: 600;
         }
         .pub-title {
@@ -411,7 +424,7 @@
             color: var(--accent-gold);
         }
         .pub-title .no-link {
-            background: linear-gradient(135deg, #fff, var(--accent-cyan));
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -433,12 +446,11 @@
         .sub-section-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-primary);
             margin: 28px 0 16px;
             letter-spacing: -0.01em;
             border-left: 4px solid var(--accent-cyan);
             padding-left: 16px;
-            text-shadow: 0 0 20px rgba(72, 202, 228, 0.1);
         }
 
         /* Conference / Awards */
@@ -446,20 +458,22 @@
         .award-item {
             margin-bottom: 14px;
             padding: 14px 20px;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 12px;
             border-left: 3px solid var(--accent-cyan);
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
         }
         .conf-item:hover,
         .award-item:hover {
-            background: rgba(72, 202, 228, 0.05);
+            background: #ffffff;
             transform: translateX(6px);
             border-left-color: var(--accent-gold);
+            box-shadow: var(--shadow-hover);
         }
         .conf-item .conf-title {
             font-weight: 600;
-            color: #fff;
+            color: var(--text-primary);
         }
         .conf-item .conf-venue {
             color: var(--text-light);
@@ -480,20 +494,21 @@
         /* Reference */
         .ref-block {
             background: var(--bg-card);
-            border: 1px solid var(--border-glow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
             border-radius: var(--radius);
             padding: 24px 28px;
             backdrop-filter: blur(12px);
             transition: all 0.3s;
+            box-shadow: var(--shadow-glow);
         }
         .ref-block:hover {
-            border-color: rgba(72, 202, 228, 0.3);
-            box-shadow: 0 0 40px rgba(72, 202, 228, 0.05);
+            border-color: rgba(14, 165, 233, 0.15);
+            box-shadow: var(--shadow-hover);
         }
         .ref-block .ref-name {
             font-weight: 700;
             font-size: 1.2rem;
-            color: #fff;
+            color: var(--text-primary);
         }
         .ref-block .ref-title {
             color: var(--text-muted);
@@ -510,15 +525,15 @@
             text-align: center;
             font-size: 0.8rem;
             color: var(--text-light);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
             margin-top: 24px;
         }
         .site-footer span {
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         /* ============================================
-           PROFILE PHOTO (B&W with GLOW)
+           PROFILE PHOTO (B&W with Soft Glow)
         ============================================ */
         .profile-photo-wrapper {
             flex: 0 0 140px;
@@ -534,18 +549,18 @@
             width: 130px;
             height: 130px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(72, 202, 228, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
             z-index: -1;
             animation: glowPulse 3s ease-in-out infinite alternate;
         }
         @keyframes glowPulse {
             0% {
                 transform: translateX(-50%) scale(0.9);
-                opacity: 0.5;
+                opacity: 0.4;
             }
             100% {
                 transform: translateX(-50%) scale(1.3);
-                opacity: 1;
+                opacity: 0.8;
             }
         }
         .profile-photo {
@@ -553,21 +568,21 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.1) brightness(1.05);
-            border: 2px solid rgba(72, 202, 228, 0.3);
-            box-shadow: 0 0 50px rgba(72, 202, 228, 0.1);
+            filter: grayscale(100%) contrast(1.1) brightness(1.02);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
             transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            background: #1a1a2e;
+            background: #e2e8f0;
         }
         .profile-photo:hover {
-            filter: grayscale(80%) contrast(1.1) brightness(1.1);
+            filter: grayscale(80%) contrast(1.1) brightness(1.05);
             transform: scale(1.04) rotate(-2deg);
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 80px rgba(251, 191, 36, 0.15);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 60px rgba(14, 165, 233, 0.12);
         }
 
         /* ============================================
-           HERO TITLE GLOW
+           HERO TITLE GRADIENT
         ============================================ */
         .hero-name {
             font-family: var(--font-serif);
@@ -575,9 +590,8 @@
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.02em;
-            color: #fff;
-            text-shadow: 0 0 60px rgba(72, 202, 228, 0.1);
-            background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 80%);
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #0f172a 20%, var(--accent-cyan) 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -605,19 +619,20 @@
                 top: 20px;
                 left: 20px;
                 z-index: 200;
-                background: rgba(7, 7, 14, 0.9);
+                background: rgba(255, 255, 255, 0.9);
                 backdrop-filter: blur(8px);
-                border: 1px solid var(--border-glow);
+                border: 1px solid rgba(0, 0, 0, 0.06);
                 border-radius: 12px;
                 padding: 10px 14px;
-                color: #fff;
+                color: var(--text-primary);
                 font-size: 1.5rem;
                 cursor: pointer;
                 transition: all 0.3s;
+                box-shadow: var(--shadow-glow);
             }
             .hamburger:hover {
                 background: var(--accent-cyan);
-                color: #000;
+                color: #fff;
                 border-color: var(--accent-cyan);
             }
             .container {
@@ -705,6 +720,7 @@
             <li><a href="#preparation" class="active"><span class="icon">⚡</span> Preparation</a></li>
             <li><a href="#experience"><span class="icon">🔬</span> Experience</a></li>
             <li><a href="#mentoring"><span class="icon">👥</span> Mentoring</a></li>
+            <li><a href="#teaching"><span class="icon">📚</span> Teaching</a></li>
             <li><a href="#education"><span class="icon">🎓</span> Education</a></li>
             <li><a href="#expertise"><span class="icon">🧠</span> Expertise</a></li>
             <li><a href="#publications"><span class="icon">📄</span> Publications</a></li>
@@ -734,7 +750,10 @@
                     </div>
                     <div class="profile-photo-wrapper">
                         <!-- ==========================================================
-                        REPLACE 'photo.jpg' WITH THE PATH TO YOUR B&W PHOTO
+                        HOW TO UPLOAD YOUR IMAGE:
+                        1. Save your black & white photo as 'photo.jpg' in the same folder.
+                        2. If you name it differently, update the 'src' below.
+                        3. You can also use a direct URL (e.g., from your university website).
                         ========================================================== -->
                         <img src="photo.jpg" alt="Dr. Soumya Sankar" class="profile-photo" />
                     </div>
@@ -770,7 +789,7 @@
             </div>
         </section>
 
-        <!-- ===== MENTORING & SUPERVISION (NEW) ===== -->
+        <!-- ===== MENTORING & SUPERVISION ===== -->
         <section id="mentoring" class="page-section fade-in">
             <div class="container">
                 <h2 class="section-title">Mentoring &amp; Supervision</h2>
@@ -782,6 +801,38 @@
                         <li><strong>Dominic Huang</strong> (UG student at <strong>HKUST</strong>)</li>
                         <li><strong>Fanjiang Yei</strong> (UG at USTC → PhD student at <strong>Rice University</strong>, Computer Science)</li>
                         <li><em>and more ...</em></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TEACHING EXPERIENCE ===== -->
+        <section id="teaching" class="page-section fade-in">
+            <div class="container">
+                <h2 class="section-title">Teaching Experience</h2>
+                <div class="glass-card">
+                    <ul class="entry-list">
+                        <li>
+                            <strong>Teaching Assistant – PHYS1112 (General Physics I)</strong>
+                            <span class="teaching-duty">| Fall 2022, Spring 2023</span>
+                            <br /><span style="font-size: 0.85rem; color: var(--text-light);">Led tutorial sessions, held office hours, and graded examinations for ~60 undergraduate students.</span>
+                        </li>
+                        <li>
+                            <strong>Teaching Assistant – PHYS1114 (General Physics II)</strong>
+                            <span class="teaching-duty">| Fall 2023</span>
+                            <br /><span style="font-size: 0.85rem; color: var(--text-light);">Conducted laboratory demonstrations and assisted students with experimental setups and data analysis.</span>
+                        </li>
+                        <li>
+                            <strong>Teaching Assistant – PHYS3032 (Classical Mechanics)</strong>
+                            <span class="teaching-duty">| Spring 2024</span>
+                            <br /><span style="font-size: 0.85rem; color: var(--text-light);">Designed problem sets, led review sessions, and provided individualized feedback on advanced problem-solving.</span>
+                        </li>
+                        <li>
+                            <strong>Teaching Assistant – PHYS4052 (Quantum Physics Lab)</strong>
+                            <span class="teaching-duty">| Fall 2024</span>
+                            <br /><span style="font-size: 0.85rem; color: var(--text-light);">Supervised advanced undergraduate experiments in quantum optics and solid-state physics.</span>
+                        </li>
+                        <li><em>and additional TA assignments across the Physics department ...</em></li>
                     </ul>
                 </div>
             </div>
@@ -800,7 +851,7 @@
                     <div class="entry-detail">
                         The Hong Kong University of Science and Technology (HKUST)
                         <span style="color: var(--text-light); font-size: 0.85rem;">
-                            — ranked <strong style="color:#fff;">44th globally</strong> (<a href="https://www.topuniversities.com/world-university-rankings" target="_blank">QS 2026</a>) and <strong style="color:#fff;">6th in Asia</strong>
+                            — ranked <strong style="color:var(--text-primary);">44th globally</strong> (<a href="https://www.topuniversities.com/world-university-rankings" target="_blank">QS 2026</a>) and <strong style="color:var(--text-primary);">6th in Asia</strong>
                         </span>
                         <br />
                         Advisor: Prof. Berthold Jäck &middot; CGPA: 3.22/4.30 (Coursework)
@@ -886,26 +937,38 @@
                 <h3 class="sub-section-title">Peer-Reviewed Journal Articles</h3>
 
                 <div class="glass-card">
+
+                    <!-- ===== NEW PRX PAPER (2026) ===== -->
+                    <div class="pub-item">
+                        <div class="pub-authors">Caiyun Chen, Jiangchang Zheng, Yuman He, Siqi Wu, Xuzhe Ying, <strong>Soumya Sankar</strong>, Luanjing Li, Yizhou Wei, Xi Dai, Hoi Chun Po, Berthold Jäck</div>
+                        <div class="pub-title"><a href="https://journals.aps.org/prx/abstract/10.1103/c93j-k53f" target="_blank">Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</a></div>
+                        <div class="pub-venue">Phys. Rev. X <strong>16</strong>, 011009 (2026)</div>
+                    </div>
+
                     <div class="pub-item">
                         <div class="pub-authors"><strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck</div>
                         <div class="pub-title"><a href="https://doi.org/10.1038/s41467-025-67111-x" target="_blank">Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</a></div>
                         <div class="pub-venue">Nat. Commun. (2025)</div>
                     </div>
+
                     <div class="pub-item">
                         <div class="pub-authors"><strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck</div>
                         <div class="pub-title"><a href="https://doi.org/10.1103/PhysRevX.14.021046" target="_blank">Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</a></div>
                         <div class="pub-venue">Phys. Rev. X <strong>14</strong>, 021046 (2024)</div>
                     </div>
+
                     <div class="pub-item">
                         <div class="pub-authors">C. Chen, J. Zheng, R. Yu, <strong>S. Sankar</strong>, K. T. Law, H. C. Po, B. Jäck</div>
                         <div class="pub-title"><a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043269" target="_blank">Visualizing the localized electrons of a kagome flat band</a></div>
                         <div class="pub-venue">Phys. Rev. Res. <strong>5</strong>, L042035 (2023)</div>
                     </div>
+
                     <div class="pub-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
                         <div class="pub-authors">R. Sharma, P. Sharma, K. R. Sahoo, <strong>S. Sankar</strong>, V.P.S. Awana, M. Kumar, T. N. Narayanan</div>
                         <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S1369702121002200" target="_blank">Giant Photoresponsivity of Transfer-Free Grown Fluorographene–MoS<sub>2</sub> Heterostructured Ultra-Stable Transistors</a></div>
                         <div class="pub-venue">Mater. Today <strong>51</strong>, 85–94 (2021)</div>
                     </div>
+
                 </div>
 
             </div>
