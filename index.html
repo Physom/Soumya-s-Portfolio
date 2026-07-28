@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
     <style>
-        /* ========================================
-           RESET & BASE (NOIR MONOCHROME)
-        ======================================== */
+        /* ============================================
+           RESET & BASE (EXOTIC COSMIC THEME)
+        ============================================ */
         *,
         *::before,
         *::after {
@@ -20,15 +20,16 @@
             box-sizing: border-box;
         }
         :root {
-            --bg-primary: #0b0b0e;
-            --bg-secondary: #131316;
+            --bg-primary: #07070e;
+            --bg-secondary: #0d0d1a;
             --bg-card: rgba(255, 255, 255, 0.04);
-            --border-glow: rgba(255, 255, 255, 0.08);
-            --text-primary: #f2f5f8;
-            --text-muted: #9aa2ad;
-            --text-light: #6c7480;
-            --accent-silver: #b8c2cc;
-            --accent-white: #ffffff;
+            --border-glow: rgba(72, 202, 228, 0.2);
+            --text-primary: #f0f4ff;
+            --text-muted: #9aa8c7;
+            --text-light: #6a7a99;
+            --accent-cyan: #48cae4;
+            --accent-gold: #fbbf24;
+            --accent-purple: #a78bfa;
             --shadow-glow: 0 8px 32px rgba(0, 0, 0, 0.6);
             --radius: 16px;
             --sidebar-width: 260px;
@@ -46,16 +47,22 @@
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
+            /* Quantum-inspired grid background */
+            background-image:
+                linear-gradient(rgba(72, 202, 228, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(72, 202, 228, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
         a {
-            color: var(--accent-silver);
+            color: var(--accent-cyan);
             text-decoration: none;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             border-bottom: 1px solid transparent;
+            font-weight: 500;
         }
         a:hover {
-            color: var(--accent-white);
-            border-bottom-color: var(--accent-white);
+            color: var(--accent-gold);
+            border-bottom-color: var(--accent-gold);
         }
         .container {
             max-width: 1000px;
@@ -63,20 +70,20 @@
             padding: 0 30px;
         }
 
-        /* ========================================
-           SUBTLE GREY ORBS (Depth without colour)
-        ======================================== */
+        /* ============================================
+           ANIMATED GLOWING ORBS
+        ============================================ */
         .bg-orb {
             position: fixed;
             top: -20%;
             right: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(72, 202, 228, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
-            animation: pulseGlow 10s ease-in-out infinite alternate;
+            animation: pulseGlow 12s ease-in-out infinite alternate;
         }
         .bg-orb-bottom {
             position: fixed;
@@ -84,33 +91,33 @@
             left: -10%;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.05) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
-            animation: pulseGlow 14s ease-in-out infinite alternate-reverse;
+            animation: pulseGlow 16s ease-in-out infinite alternate-reverse;
         }
         @keyframes pulseGlow {
             0% {
-                transform: scale(0.8) translateX(0);
-                opacity: 0.4;
+                transform: scale(0.8) translateX(0) rotate(0deg);
+                opacity: 0.3;
             }
             100% {
-                transform: scale(1.2) translateX(40px);
-                opacity: 0.8;
+                transform: scale(1.3) translateX(50px) rotate(5deg);
+                opacity: 0.7;
             }
         }
 
-        /* ========================================
+        /* ============================================
            SIDEBAR NAVIGATION
-        ======================================== */
+        ============================================ */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: rgba(11, 11, 14, 0.92);
+            background: rgba(7, 7, 14, 0.92);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-right: 1px solid var(--border-glow);
@@ -123,27 +130,30 @@
         }
         .sidebar .brand {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 48px;
-            color: #fff;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             border-bottom: none;
-            background: none;
         }
         .sidebar .brand span {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-family: var(--font-sans);
-            color: var(--text-muted);
             display: block;
+            -webkit-text-fill-color: var(--text-muted);
+            background: none;
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             margin-top: 4px;
         }
         .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
             list-style: none;
         }
         .nav-links li a {
@@ -159,24 +169,44 @@
             transition: all 0.3s ease;
             background: transparent;
             border-bottom: none;
+            position: relative;
+        }
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--accent-cyan);
+            border-radius: 4px;
+            transition: height 0.3s ease;
         }
         .nav-links li a:hover,
         .nav-links li a.active {
             color: #fff;
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
+            background: rgba(72, 202, 228, 0.08);
+            border-color: var(--border-glow);
+            box-shadow: 0 0 30px rgba(72, 202, 228, 0.05);
             transform: translateX(6px);
+        }
+        .nav-links li a:hover::before,
+        .nav-links li a.active::before {
+            height: 60%;
+            right: calc(100% + 4px);
         }
         .nav-links li a .icon {
             font-size: 1.2rem;
             width: 24px;
             text-align: center;
-            opacity: 0.5;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
         .nav-links li a:hover .icon,
         .nav-links li a.active .icon {
             opacity: 1;
+            color: var(--accent-cyan);
         }
         .sidebar-footer {
             margin-top: auto;
@@ -185,12 +215,12 @@
             border-top: 1px solid var(--border-glow);
             padding-top: 20px;
             text-align: center;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
         }
 
-        /* ========================================
+        /* ============================================
            MAIN CONTENT
-        ======================================== */
+        ============================================ */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -200,9 +230,9 @@
             min-height: 100vh;
         }
 
-        /* ========================================
+        /* ============================================
            SECTIONS (PAGES)
-        ======================================== */
+        ============================================ */
         .page-section {
             padding: 60px 0 40px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
@@ -220,26 +250,27 @@
             margin-bottom: 32px;
             color: #fff;
             display: inline-block;
-            border-bottom: 3px solid var(--accent-silver);
+            border-bottom: 3px solid var(--accent-cyan);
             padding-bottom: 6px;
+            text-shadow: 0 0 30px rgba(72, 202, 228, 0.15);
         }
 
-        /* Cards & Entries */
+        /* Glass Cards */
         .glass-card {
             background: var(--bg-card);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius);
             padding: 24px 28px;
             margin-bottom: 24px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             box-shadow: var(--shadow-glow);
         }
         .glass-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+            transform: translateY(-6px);
+            border-color: rgba(72, 202, 228, 0.4);
+            box-shadow: 0 16px 64px rgba(72, 202, 228, 0.08);
         }
 
         .entry-header {
@@ -255,18 +286,29 @@
             font-size: 1.1rem;
             color: #fff;
         }
+        .entry-title a {
+            color: #fff;
+            border-bottom: none;
+        }
+        .entry-title a:hover {
+            color: var(--accent-cyan);
+        }
         .entry-meta {
             font-size: 0.8rem;
             color: var(--text-light);
             font-weight: 400;
             white-space: nowrap;
+            background: rgba(72, 202, 228, 0.1);
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(72, 202, 228, 0.1);
         }
         .entry-detail {
             font-size: 0.95rem;
             color: var(--text-muted);
         }
         .entry-detail .advisor {
-            color: var(--accent-silver);
+            color: var(--accent-cyan);
             font-weight: 500;
         }
         .entry-list {
@@ -279,13 +321,18 @@
             padding-left: 24px;
             margin-bottom: 6px;
             color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        .entry-list li:hover {
+            color: #fff;
         }
         .entry-list li::before {
             content: '▹';
             position: absolute;
             left: 0;
-            color: var(--accent-silver);
+            color: var(--accent-cyan);
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(72, 202, 228, 0.3);
         }
 
         /* Expertise Tags */
@@ -295,23 +342,25 @@
             gap: 12px 20px;
         }
         .tech-tag {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(72, 202, 228, 0.06);
+            border: 1px solid rgba(72, 202, 228, 0.12);
             border-radius: 40px;
             padding: 6px 18px;
             font-size: 0.85rem;
             color: var(--text-primary);
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             display: inline-block;
+            backdrop-filter: blur(4px);
         }
         .tech-tag strong {
-            color: var(--accent-silver);
+            color: var(--accent-cyan);
             font-weight: 600;
         }
         .tech-tag:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.02);
+            background: rgba(72, 202, 228, 0.15);
+            border-color: var(--accent-cyan);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(72, 202, 228, 0.1);
         }
 
         /* Publications */
@@ -338,25 +387,37 @@
             font-weight: 700;
             font-size: 1.05rem;
             margin: 4px 0 2px;
-            color: var(--accent-silver);
         }
         .pub-title a {
-            color: var(--accent-silver);
+            color: var(--accent-cyan);
             border-bottom: none;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s;
         }
         .pub-title a:hover {
-            color: #fff;
+            -webkit-text-fill-color: var(--accent-gold);
+            background: none;
+            color: var(--accent-gold);
+        }
+        .pub-title .no-link {
+            background: linear-gradient(135deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .pub-venue {
             color: var(--text-light);
             font-size: 0.85rem;
         }
         .pub-venue .status {
-            color: var(--accent-white);
+            color: var(--accent-gold);
             font-style: italic;
         }
         .equal-contrib {
-            color: var(--accent-silver);
+            color: var(--accent-gold);
             font-weight: 400;
             font-size: 0.85rem;
             margin-left: 6px;
@@ -367,18 +428,26 @@
             color: #fff;
             margin: 28px 0 16px;
             letter-spacing: -0.01em;
-            border-left: 4px solid var(--accent-silver);
+            border-left: 4px solid var(--accent-cyan);
             padding-left: 16px;
+            text-shadow: 0 0 20px rgba(72, 202, 228, 0.1);
         }
 
         /* Conference / Awards */
         .conf-item,
         .award-item {
             margin-bottom: 14px;
-            padding: 12px 18px;
+            padding: 14px 20px;
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            border-left: 2px solid var(--accent-silver);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-cyan);
+            transition: all 0.3s ease;
+        }
+        .conf-item:hover,
+        .award-item:hover {
+            background: rgba(72, 202, 228, 0.05);
+            transform: translateX(6px);
+            border-left-color: var(--accent-gold);
         }
         .conf-item .conf-title {
             font-weight: 600;
@@ -394,10 +463,10 @@
             font-style: italic;
         }
         .award-item {
-            border-left-color: var(--accent-silver);
+            border-left-color: var(--accent-gold);
         }
         .award-item strong {
-            color: var(--accent-white);
+            color: var(--accent-gold);
         }
 
         /* Reference */
@@ -406,7 +475,12 @@
             border: 1px solid var(--border-glow);
             border-radius: var(--radius);
             padding: 24px 28px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s;
+        }
+        .ref-block:hover {
+            border-color: rgba(72, 202, 228, 0.3);
+            box-shadow: 0 0 40px rgba(72, 202, 228, 0.05);
         }
         .ref-block .ref-name {
             font-weight: 700;
@@ -431,29 +505,79 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 24px;
         }
+        .site-footer span {
+            opacity: 0.7;
+        }
 
-        /* ========================================
-           PROFILE PHOTO (B&W)
-        ======================================== */
+        /* ============================================
+           PROFILE PHOTO (B&W with GLOW)
+        ============================================ */
+        .profile-photo-wrapper {
+            flex: 0 0 140px;
+            text-align: center;
+            position: relative;
+        }
+        .profile-photo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(72, 202, 228, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite alternate;
+        }
+        @keyframes glowPulse {
+            0% {
+                transform: translateX(-50%) scale(0.9);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.3);
+                opacity: 1;
+            }
+        }
         .profile-photo {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.1);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-            transition: filter 0.3s, transform 0.3s;
-            background: #1a1a1a; /* fallback */
+            filter: grayscale(100%) contrast(1.1) brightness(1.05);
+            border: 2px solid rgba(72, 202, 228, 0.3);
+            box-shadow: 0 0 50px rgba(72, 202, 228, 0.1);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            background: #1a1a2e;
         }
         .profile-photo:hover {
-            filter: grayscale(80%) contrast(1.1);
-            transform: scale(1.02);
+            filter: grayscale(80%) contrast(1.1) brightness(1.1);
+            transform: scale(1.04) rotate(-2deg);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 80px rgba(251, 191, 36, 0.15);
         }
 
-        /* ========================================
+        /* ============================================
+           HERO TITLE GLOW
+        ============================================ */
+        .hero-name {
+            font-family: var(--font-serif);
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #fff;
+            text-shadow: 0 0 60px rgba(72, 202, 228, 0.1);
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================
            RESPONSIVE
-        ======================================== */
+        ============================================ */
         @media (max-width: 820px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -473,10 +597,10 @@
                 top: 20px;
                 left: 20px;
                 z-index: 200;
-                background: rgba(11, 11, 14, 0.9);
+                background: rgba(7, 7, 14, 0.9);
                 backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 10px;
+                border: 1px solid var(--border-glow);
+                border-radius: 12px;
                 padding: 10px 14px;
                 color: #fff;
                 font-size: 1.5rem;
@@ -484,8 +608,9 @@
                 transition: all 0.3s;
             }
             .hamburger:hover {
-                background: #fff;
+                background: var(--accent-cyan);
                 color: #000;
+                border-color: var(--accent-cyan);
             }
             .container {
                 padding: 0 20px;
@@ -502,10 +627,21 @@
             }
             .entry-meta {
                 white-space: normal;
+                margin-top: 4px;
+            }
+            .profile-photo-wrapper {
+                flex: 0 0 100px;
             }
             .profile-photo {
                 width: 90px;
                 height: 90px;
+            }
+            .profile-photo-wrapper::after {
+                width: 100px;
+                height: 100px;
+            }
+            .hero-name {
+                font-size: 2.6rem;
             }
         }
         @media (max-width: 480px) {
@@ -521,6 +657,9 @@
             .pub-title {
                 font-size: 0.95rem;
             }
+            .hero-name {
+                font-size: 2.2rem;
+            }
         }
         .hamburger {
             display: none;
@@ -529,8 +668,9 @@
         /* Scroll animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .fade-in.visible {
             opacity: 1;
@@ -540,7 +680,7 @@
 </head>
 <body>
 
-    <!-- ===== BACKGROUND ORBS (Monochrome) ===== -->
+    <!-- ===== BACKGROUND ORBS ===== -->
     <div class="bg-orb"></div>
     <div class="bg-orb-bottom"></div>
 
@@ -574,9 +714,7 @@
             <div class="container">
                 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-bottom: 32px;">
                     <div style="flex: 1;">
-                        <h1 style="font-family: var(--font-serif); font-size: 3.2rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #fff;">
-                            Dr. Soumya Sankar
-                        </h1>
+                        <h1 class="hero-name">Dr. Soumya Sankar</h1>
                         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 4px;">Physics PhD Candidate</p>
                         <p style="color: var(--text-light); margin-bottom: 8px;">Department of Physics · The Hong Kong University of Science and Technology</p>
                         <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 0.9rem; color: var(--text-muted);">
@@ -585,9 +723,9 @@
                             <span>Clear Water Bay, Kowloon, HK</span>
                         </div>
                     </div>
-                    <div style="flex: 0 0 120px; text-align: center;">
+                    <div class="profile-photo-wrapper">
                         <!-- ==========================================================
-                        REPLACE 'photo.jpg' WITH THE PATH TO YOUR BLACK & WHITE PHOTO
+                        REPLACE 'photo.jpg' WITH THE PATH TO YOUR B&W PHOTO
                         ========================================================== -->
                         <img src="photo.jpg" alt="Dr. Soumya Sankar" class="profile-photo" />
                     </div>
@@ -689,7 +827,7 @@
                 <div class="glass-card">
                     <div class="pub-item">
                         <div class="pub-authors">Raghutheja Bollampally, <strong>Soumya Sankar</strong>, Yuqi Qin, and Berthold Jäck</div>
-                        <div class="pub-title">Generalized Active learning protocols for Physical Vapour Deposition of complex Quantum Materials</div>
+                        <div class="pub-title"><span class="no-link">Generalized Active learning protocols for Physical Vapour Deposition of complex Quantum Materials</span></div>
                         <div class="pub-venue">(Manuscript in preparation)</div>
                     </div>
                     <div class="pub-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
@@ -697,12 +835,12 @@
                             Yuqi Qin§, <strong>Soumya Sankar§</strong>, Xingkai Cheng, Yifan Jiang, Jiayin Tang, Danfeng Li, Shiming Lei, Junwei Liu, and Berthold Jäck
                             <span class="equal-contrib">(§ equal contributions)</span>
                         </div>
-                        <div class="pub-title">Observation of temperature independent giant Anomalous Hall Response in the epitaxial thin film of Lego Kagome Ferromagnet Co<sub>3</sub>Sn</div>
+                        <div class="pub-title"><span class="no-link">Observation of temperature independent giant Anomalous Hall Response in the epitaxial thin film of Lego Kagome Ferromagnet Co<sub>3</sub>Sn</span></div>
                         <div class="pub-venue">(Manuscript in preparation)</div>
                     </div>
                 </div>
 
-                <!-- Preprints (NEW in-plane Hall paper added here) -->
+                <!-- Preprints -->
                 <h3 class="sub-section-title">Preprints</h3>
 
                 <div class="glass-card">
@@ -747,25 +885,43 @@
             </div>
         </section>
 
-        <!-- ===== PRESENTATIONS ===== -->
+        <!-- ===== PRESENTATIONS (UPDATED) ===== -->
         <section id="presentations" class="page-section fade-in">
             <div class="container">
                 <h2 class="section-title">Conference Presentations</h2>
+
                 <div class="conf-item">
                     <div class="conf-title">APS March Meeting 2024</div>
                     <div class="conf-venue">Minneapolis, USA</div>
                     <div class="conf-desc">Oral: “Experimental study of in-plane Hall effect in a magnetic Weyl semimetal”</div>
                 </div>
+
                 <div class="conf-item">
                     <div class="conf-title">APS March Meeting 2023</div>
                     <div class="conf-venue">Las Vegas, USA</div>
                     <div class="conf-desc">Poster: “Mapping out the topological phase diagram of FeSn”</div>
                 </div>
+
+                <!-- NEW: TMS School 2023 -->
+                <div class="conf-item">
+                    <div class="conf-title">Topological Material School (TMS) 2023</div>
+                    <div class="conf-venue">Spain</div>
+                    <div class="conf-desc">Attendee &amp; Poster Presentation</div>
+                </div>
+
+                <!-- NEW: Hong Kong Guangdong Macao Conference 2023 -->
+                <div class="conf-item">
+                    <div class="conf-title">Hong Kong Guangdong Macao Conference 2023</div>
+                    <div class="conf-venue">Hong Kong SAR</div>
+                    <div class="conf-desc">Oral Presentation</div>
+                </div>
+
                 <div class="conf-item">
                     <div class="conf-title">12th India-Singapore Symposium 2019</div>
                     <div class="conf-venue">Puri, India</div>
                     <div class="conf-desc">Attendee</div>
                 </div>
+
             </div>
         </section>
 
@@ -807,9 +963,9 @@
 
     </main>
 
-    <!-- ========================================
+    <!-- ============================================
     JAVASCRIPT
-    ======================================== -->
+    ============================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Hamburger toggle
