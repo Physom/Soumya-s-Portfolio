@@ -1,350 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Soumya's Portfolio · TERMINAL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Soumya Sankar · Physics</title>
+    <meta name="description" content="Dr. Soumya Sankar – Physics PhD Candidate at The Hong Kong University of Science and Technology. Research in topological quantum matter, thin film growth, and quantum transport." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        * {
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        :root {
+            --accent: #005a9c;
+            --accent-light: #e8f0fe;
+            --text-dark: #1a1a2e;
+            --text-muted: #4a4a5a;
+            --text-light: #6b6b7b;
+            --border-light: #e8ecf1;
+            --bg-body: #fafbfc;
+            --bg-card: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            --max-width: 1080px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            background: #0c0c0c;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-            color: #a3e635;
-            line-height: 1.5;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .terminal {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: #0a0f0a;
-            border: 1px solid #2a5a2a;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(163, 230, 53, 0.2);
-            overflow: hidden;
-        }
-
-        .terminal-bar {
-            background: #1a1f1a;
-            padding: 0.6rem 1rem;
-            border-bottom: 1px solid #2a5a2a;
-            display: flex;
-            gap: 0.6rem;
-        }
-        .window-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #5f5f5f;
-        }
-        .window-btn.red { background: #ff5f56; }
-        .window-btn.yellow { background: #ffbd2e; }
-        .window-btn.green { background: #27c93f; }
-
-        .terminal-content {
-            padding: 1.8rem 2rem 2rem;
-            overflow-x: auto;
-        }
-
-        .ascii {
-            font-family: monospace;
-            white-space: pre;
-            font-size: 0.65rem;
-            line-height: 1.2;
-            color: #a3e635;
-            margin-bottom: 2rem;
-            text-align: center;
-            overflow-x: auto;
-        }
-
-        .line {
-            margin-bottom: 1rem;
-            font-family: monospace;
-        }
-        .prompt {
-            color: #6fcf97;
-            font-weight: bold;
-        }
-        .cmd {
-            color: #e6db74;
-        }
-        .output {
-            margin-left: 1.5rem;
-            margin-top: 0.3rem;
-            margin-bottom: 1rem;
-            border-left: 2px solid #2a5a2a;
-            padding-left: 1rem;
-        }
-
-        .pub-item, .award-item, .teaching-item, .patent-item {
-            margin-bottom: 1.2rem;
-        }
-        .pub-title, .patent-title {
-            color: #f1c40f;
-            font-weight: bold;
-        }
-        .pub-journal, .patent-ref {
-            color: #5dade2;
-        }
-        .pub-authors {
-            color: #b0b0b0;
-            font-size: 0.85rem;
-        }
-        .badge {
-            color: #e67e22;
-        }
-        hr {
-            border-color: #2a5a2a;
-            margin: 1rem 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
         a {
-            color: #a3e635;
+            color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px dashed #a3e635;
+            transition: color 0.2s;
         }
         a:hover {
-            color: #c0ff80;
+            color: #003d6b;
+            text-decoration: underline;
         }
-        .blinking-cursor {
-            background-color: #a3e635;
-            display: inline-block;
-            width: 10px;
-            height: 1.2rem;
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        footer {
-            margin-top: 2rem;
-            font-size: 0.7rem;
-            text-align: center;
-            color: #5a7a5a;
-            border-top: 1px solid #2a5a2a;
-            padding-top: 1rem;
-        }
-        .command-input {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .command-input span {
-            color: #6fcf97;
-        }
-        .fake-input {
-            background: #1a2a1a;
-            border: 1px solid #3a7a3a;
-            padding: 0.3rem 0.6rem;
-            font-family: monospace;
-            color: #a3e635;
-            outline: none;
-            min-width: 200px;
-        }
-        button {
-            background: #2a4a2a;
-            border: none;
-            color: #a3e635;
-            font-family: monospace;
-            padding: 0.3rem 0.8rem;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #3a6a3a;
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
+        /* ===== HEADER ===== */
+        .site-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-light);
+            padding: 20px 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+        }
+        .logo-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+        }
+        .logo-name span {
+            color: var(--accent);
+        }
+        .nav-links {
+            display: flex;
+            gap: 8px 18px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 48px 0 32px;
+            background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 32px;
+        }
+        .hero-text {
+            flex: 2;
+            min-width: 280px;
+        }
+        .hero-text h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .hero-text .title-role {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .hero-text .affiliation {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+        .hero-text .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .hero-text .contact-row a {
+            color: var(--accent);
+        }
+        .hero-text .contact-row a:hover {
+            text-decoration: underline;
+        }
+        .hero-avatar {
+            flex: 0 0 120px;
+            text-align: center;
+        }
+        .hero-avatar .initials {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0, 90, 156, 0.18);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 40px 0 32px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--border-light);
+        }
+
+        /* ===== CARDS / ENTRIES ===== */
+        .entry {
+            margin-bottom: 24px;
+        }
+        .entry:last-child {
+            margin-bottom: 0;
+        }
+        .entry-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 6px 16px;
+            margin-bottom: 2px;
+        }
+        .entry-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+        .entry-title a {
+            color: var(--text-dark);
+        }
+        .entry-title a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .entry-sub {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .entry-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .entry-detail {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .entry-detail em {
+            font-style: italic;
+            color: var(--text-light);
+        }
+        .entry-detail .advisor {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .entry-list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0 0;
+        }
+        .entry-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .entry-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ===== PUBLICATIONS ===== */
+        .pub-item {
+            margin-bottom: 18px;
+            padding-left: 0;
+        }
+        .pub-item .pub-authors {
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+        .pub-item .pub-authors strong {
+            font-weight: 600;
+        }
+        .pub-item .pub-title {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .pub-item .pub-title a {
+            color: var(--accent);
+        }
+        .pub-item .pub-title a:hover {
+            text-decoration: underline;
+        }
+        .pub-item .pub-venue {
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+        .pub-item .pub-venue .status {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        .pub-item .pub-links {
+            margin-top: 2px;
+            font-size: 0.85rem;
+        }
+        .pub-item .pub-links a {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ===== TECH EXPERTISE ===== */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 6px 24px;
+            margin-top: 4px;
+        }
+        .tech-grid .tech-item {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            padding: 2px 0;
+        }
+        .tech-grid .tech-item strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ===== CONFERENCE / AWARDS ===== */
+        .conf-item,
+        .award-item {
+            margin-bottom: 12px;
+        }
+        .conf-item .conf-title {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .conf-item .conf-venue {
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+        .conf-item .conf-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-style: italic;
+        }
+        .award-item {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .award-item strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ===== REFERENCE ===== */
+        .ref-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: var(--shadow);
+        }
+        .ref-block .ref-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+        .ref-block .ref-title {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+        .ref-block .ref-affil {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .ref-block .ref-email {
+            margin-top: 4px;
+        }
+        .ref-block .ref-email a {
+            font-weight: 500;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            padding: 24px 0 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-light);
+            margin-top: 8px;
+        }
+        .site-footer span {
+            display: inline-block;
+            margin: 0 8px;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 700px) {
-            body { padding: 1rem; }
-            .ascii { font-size: 0.45rem; }
+            .container {
+                padding: 0 18px;
+            }
+            .hero-text h1 {
+                font-size: 2.0rem;
+            }
+            .hero-text .title-role {
+                font-size: 1.0rem;
+            }
+            .hero-avatar {
+                flex: 0 0 80px;
+            }
+            .hero-avatar .initials {
+                width: 80px;
+                height: 80px;
+                font-size: 2.0rem;
+            }
+            .hero-grid {
+                gap: 20px;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                font-size: 0.82rem;
+                gap: 4px 14px;
+            }
+            .section-title {
+                font-size: 1.25rem;
+            }
+            .entry-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .entry-meta {
+                white-space: normal;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ref-block {
+                padding: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-text h1 {
+                font-size: 1.7rem;
+            }
+            .hero-text .contact-row {
+                font-size: 0.82rem;
+                gap: 4px 14px;
+            }
+            .nav-links {
+                gap: 2px 12px;
+                font-size: 0.78rem;
+            }
+            .logo-name {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            .site-header {
+                position: static;
+                backdrop-filter: none;
+                background: #fff;
+            }
+            .hero {
+                background: #fff;
+                padding-top: 24px;
+            }
+            section {
+                padding: 20px 0 16px;
+                break-inside: avoid;
+            }
+            .site-footer {
+                border-top: 1px solid #ccc;
+            }
+            .hero-avatar .initials {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* small utility */
+        .text-small {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .mt-1 {
+            margin-top: 4px;
+        }
+        .mb-1 {
+            margin-bottom: 4px;
+        }
+        .gap-1 {
+            gap: 4px;
         }
     </style>
 </head>
 <body>
-<div class="terminal">
-    <div class="terminal-bar">
-        <div class="window-btn red"></div>
-        <div class="window-btn yellow"></div>
-        <div class="window-btn green"></div>
-        <span style="margin-left: auto; font-size: 0.7rem;">soumya@portfolio:~</span>
-    </div>
-    <div class="terminal-content">
-        <div class="ascii">
-        Soumya Metrics
-            
-        </div>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">whoami</span>
+    <!-- ===== HEADER / NAV ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo-name">Soumya<span>Sankar</span></div>
+            <nav class="nav-links">
+                <a href="#preparation">Preparation</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#publications">Publications</a>
+                <a href="#presentations">Presentations</a>
+                <a href="#awards">Awards</a>
+                <a href="#reference">Reference</a>
+            </nav>
         </div>
-        <div class="output">
-            Soumya Sankar — experimental quantum matter physicist, Ph.D. candidate @ HKUST.
-            Specializing in topological kagome magnets, altermagnets, and Berry curvature phenomena.
-        </div>
+    </header>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">cat about.md</span>
-        </div>
-        <div class="output">
-            I synthesize thin films using molecular beam epitaxy and explore nonlinear Hall effects, 
-            anomalous transport, and quantum geometry. My goal is to uncover novel electronic states 
-            for next‑generation quantum technologies.
-        </div>
-
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">ls -la publications/</span>
-        </div>
-        <div class="output">
-            <div class="pub-item">
-                <div class="pub-title">▸ Distinguishing and Separating In-Plane Hall Responses</div>
-                <div class="pub-journal">arXiv:2604.20227 (2026)</div>
-                <div class="pub-authors"><strong>S. Sankar</strong> and 3 other authors</div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Dr. Soumya Sankar</h1>
+                <div class="title-role">Physics PhD Candidate</div>
+                <div class="affiliation">Department of Physics · The Hong Kong University of Science and Technology</div>
+                <div class="contact-row">
+                    <a href="mailto:ssankar@connect.ust.hk">ssankar@connect.ust.hk</a>
+                    <span>(+852) 7022 2737</span>
+                    <span>Clear Water Bay, Kowloon, Hong Kong SAR</span>
+                </div>
             </div>
-            <div class="pub-item">
-                <div class="pub-title">▸ Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</div>
-                <div class="pub-journal">Physical Review X 16, 011009 (2026)</div>
-                <div class="pub-authors">C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <strong>S. Sankar</strong>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck</div>
+            <div class="hero-avatar">
+                <div class="initials">SS</div>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== PROFESSIONAL PREPARATION ===== -->
+    <section id="preparation">
+        <div class="container">
+            <h2 class="section-title">Professional Preparation</h2>
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Research Assistant</span>
+                    <span class="entry-meta">2025 – 2026</span>
+                </div>
+                <div class="entry-detail">
+                    The Hong Kong University of Science and Technology (HKUST) &middot;
+                    <span class="advisor">Advisor: Prof. Berthold Jäck</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <ul class="entry-list">
+                <li>Supervised a junior graduate student to use Machine learning models like Random Forest, SVM and CNN (Convolutional Neural Network) to optimise thin films growth combining RHEED, XRD and EDS.</li>
+                <li>Supervised 2 junior graduate research students and multiple undergraduate students in nanofabrication and quantum transport experiments and thin films.</li>
+                <li>Commissioned and assembled a new Molecular Beam Epitaxy (MBE) system for intermetallic thin film growth.</li>
+                <li>Designed and set up a low-temperature current-voltage (I-V) characterization system.</li>
+                <li>Experienced in synthesizing and characterizing devices based on intermetallic magnetic thin films.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Ph.D. Candidate in Physics</span>
+                    <span class="entry-meta">2021 – Present</span>
+                </div>
+                <div class="entry-detail">
+                    The Hong Kong University of Science and Technology (HKUST)
+                    <span class="text-small">
+                        — ranked <strong>44th globally</strong> (<a href="https://www.topuniversities.com/world-university-rankings" target="_blank">QS 2026</a>) and <strong>6th in Asia</strong> (<a href="https://hkust.edu.hk/news/hkust-rises-6th-asia-and-2nd-hong-kong-qs-asia-university-rankings-2026" target="_blank">QS Asia 2026</a>)
+                    </span>
+                    <br />
+                    Advisor: Prof. Berthold Jäck &middot; CGPA: 3.22/4.30 (Coursework)
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">M.Sc. in Physics (First Class)</span>
+                    <span class="entry-meta">2017 – 2019</span>
+                </div>
+                <div class="entry-detail">
+                    Central University of Karnataka &middot; CGPA: 8.29/10.00 &middot; Department of Physics
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">B.Sc. in Physics (First Class with Distinction)</span>
+                    <span class="entry-meta">2014 – 2017</span>
+                </div>
+                <div class="entry-detail">
+                    Utkal University (Nayagarh Autonomous College) &middot; Score: 85.5/100
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TECHNICAL EXPERTISE ===== -->
+    <section id="expertise">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><strong>Thin Film Growth:</strong> MBE, RF/DC Sputtering, E-beam/Thermal Evaporation</div>
+                <div class="tech-item"><strong>Nanofabrication:</strong> E-beam/Optical Lithography, FIB, Ar<sup>+</sup> Etching, TEM, STEM</div>
+                <div class="tech-item"><strong>Characterization:</strong> PPMS, SQUID (Quantum Design), AFM/MFM, XRD</div>
+                <div class="tech-item"><strong>Spectroscopy:</strong> Raman, UV-VIS, SEM/EDS</div>
+                <div class="tech-item"><strong>Low-Temperature:</strong> He<sup>4</sup> (1.5K), He<sup>3</sup> (300mK), Hall, I-V, Nanoelectronics</div>
+                <div class="tech-item"><strong>Software:</strong> Python, MATLAB, Origin Pro, LabVIEW</div>
+                <div class="tech-item"><strong>Materials:</strong> Semiconductor and Metals growth, device fabrication and characterization</div>
+                <div class="tech-item"><strong>Machine Learning &amp; AI:</strong> Supervised ML, CNN fundamental model building and analysis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PUBLICATIONS ===== -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+
+            <h3 style="font-size:1.1rem; font-weight:600; color:var(--text-dark); margin: 8px 0 12px;">Preprints</h3>
             <div class="pub-item">
-                <div class="pub-title">▸ Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</div>
-                <div class="pub-journal">arXiv:2511.10471 (2025) — Submitted</div>
                 <div class="pub-authors"><strong>S. Sankar</strong>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck</div>
+                <div class="pub-title">
+                    <a href="https://arxiv.org/abs/2511.10471" target="_blank">Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</a>
+                </div>
+                <div class="pub-venue">arXiv:2511.10471 (2025) &middot; <span class="status">(Submitted)</span></div>
             </div>
+
+            <h3 style="font-size:1.1rem; font-weight:600; color:var(--text-dark); margin: 20px 0 12px;">Peer-Reviewed Journal Articles</h3>
+
             <div class="pub-item">
-                <div class="pub-title">▸ Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</div>
-                <div class="pub-journal">Nature Communications 17, 423 (2025)</div>
                 <div class="pub-authors"><strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck</div>
+                <div class="pub-title">
+                    <a href="https://doi.org/10.1038/s41467-025-67111-x" target="_blank">Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</a>
+                </div>
+                <div class="pub-venue">Nat. Commun. (2025)</div>
             </div>
+
             <div class="pub-item">
-                <div class="pub-title">▸ Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</div>
-                <div class="pub-journal">Physical Review X 14, 021046 (2024)</div>
                 <div class="pub-authors"><strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck</div>
+                <div class="pub-title">
+                    <a href="https://doi.org/10.1103/PhysRevX.14.021046" target="_blank">Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</a>
+                </div>
+                <div class="pub-venue">Phys. Rev. X <strong>14</strong>, 021046 (2024)</div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-authors">C. Chen, J. Zheng, R. Yu, <strong>S. Sankar</strong>, K. T. Law, H. C. Po, B. Jäck</div>
+                <div class="pub-title">
+                    <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043269" target="_blank">Visualizing the localized electrons of a kagome flat band</a>
+                </div>
+                <div class="pub-venue">Phys. Rev. Res. <strong>5</strong>, L042035 (2023)</div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-authors">R. Sharma, P. Sharma, K. R. Sahoo, <strong>S. Sankar</strong>, V.P.S. Awana, M. Kumar, T. N. Narayanan</div>
+                <div class="pub-title">
+                    <a href="https://www.sciencedirect.com/science/article/pii/S1369702121002200" target="_blank">Giant Photoresponsivity of Transfer-Free Grown Fluorographene–MoS<sub>2</sub> Heterostructured Ultra-Stable Transistors</a>
+                </div>
+                <div class="pub-venue">Mater. Today <strong>51</strong>, 85–94 (2021)</div>
             </div>
         </div>
+    </section>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">ls patents/</span>
-        </div>
-        <div class="output">
-            <div class="patent-item">
-                <div class="patent-title">▸ Circuit and measurement design for sensing magnetic fields using the anomalous in-plane Hall effect</div>
-                <div class="patent-ref">Provisional patent application filed</div>
-                <div class="pub-authors">Inventor: Soumya Sankar</div>
+    <!-- ===== CONFERENCE PRESENTATIONS ===== -->
+    <section id="presentations">
+        <div class="container">
+            <h2 class="section-title">Conference Presentations</h2>
+
+            <div class="conf-item">
+                <div class="conf-title">APS March Meeting 2024</div>
+                <div class="conf-venue">Minneapolis, USA</div>
+                <div class="conf-desc">Oral Presentation: “Experimental study of in-plane Hall effect in a magnetic Weyl semimetal”</div>
+            </div>
+
+            <div class="conf-item">
+                <div class="conf-title">APS March Meeting 2023</div>
+                <div class="conf-venue">Las Vegas, USA</div>
+                <div class="conf-desc">Poster Presentation: “Mapping out the topological phase diagram of FeSn”</div>
+            </div>
+
+            <div class="conf-item">
+                <div class="conf-title">12th India-Singapore Symposium 2019</div>
+                <div class="conf-venue">Puri, India</div>
+                <div class="conf-desc">Attendee</div>
             </div>
         </div>
+    </section>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">./show_teaching.sh</span>
+    <!-- ===== AWARDS & FELLOWSHIPS ===== -->
+    <section id="awards">
+        <div class="container">
+            <h2 class="section-title">Awards &amp; Fellowships</h2>
+
+            <div class="award-item"><strong>Hong Kong UGC Travel Grant</strong> for APS March Meeting 2024</div>
+            <div class="award-item"><strong>Hong Kong UGC Travel Grant</strong> for APS March Meeting 2023</div>
+            <div class="award-item"><strong>HKUST Postgraduate Scholarship (PGS)</strong> for PhD studies (2021–2025)</div>
+            <div class="award-item"><strong>Indo-Max Planck Partner Group Fellowship</strong> (2018–2019)</div>
         </div>
-        <div class="output">
-            <div><span class="badge">[SPRING 2021-22]</span> PHYS 3152 – Methods of Experimental Physics I (TA)</div>
-            <div><span class="badge">[FALL 2022-23]</span> PHYS 3152 – Methods of Experimental Physics I (TA)</div>
-            <div><span class="badge">[SPRING 2022-23]</span> PHYS 1314 – Honors General Physics II (TA)</div>
-            <div><span class="badge">[FALL 2023-24]</span> PHYS 1003 – Energy and Related Environmental Issues (TA)</div>
+    </section>
+
+    <!-- ===== REFERENCE ===== -->
+    <section id="reference">
+        <div class="container">
+            <h2 class="section-title">Reference</h2>
+            <div class="ref-block">
+                <div class="ref-name">Prof. Berthold Jäck</div>
+                <div class="ref-title">Associate Director of IAS Center for Quantum Matter &middot; Assistant Professor of Physics</div>
+                <div class="ref-affil">The Hong Kong University of Science and Technology &middot; Clear Water Bay, Kowloon, Hong Kong SAR</div>
+                <div class="ref-email">
+                    <a href="mailto:bjaeck@ust.hk">bjaeck@ust.hk</a> &middot;
+                    <a href="https://physics.ust.hk/people/bjaeck" target="_blank">physics.ust.hk/people/bjaeck</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">cat awards.txt</span>
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <span>Dr. Soumya Sankar</span>
+            <span>&middot;</span>
+            <span>Department of Physics, HKUST</span>
+            <span>&middot;</span>
+            <span>Updated: <time datetime="2026-07-29">29 July 2026</time></span>
         </div>
-        <div class="output">
-            🏆 Hong Kong UGC Travel Grant (2024, 2023)<br>
-            🏆 HKUST Postgraduate Scholarship (2021-2025)<br>
-            🏆 Indo-Max Planck Partner Group Fellowship (2018-2019)
-        </div>
+    </footer>
 
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">echo $EXPERTISE</span>
-        </div>
-        <div class="output">
-            MBE · e‑beam lithography · Hall bar nanofabrication · magnetotransport (1.5K – 300K)<br>
-            nonlinear Hall · Berry curvature · kagome magnets (FeSn, Co₃Sn₂S₂) · altermagnets (CrSb, RuO₂)
-        </div>
-
-        <div class="line">
-            <span class="prompt">$</span> <span class="cmd">grep contact ~/.profile</span>
-        </div>
-        <div class="output">
-            📧 ssankar@connect.ust.hk &nbsp;&nbsp;|&nbsp;&nbsp;📍 HKUST, Clear Water Bay, Hong Kong<br>
-            🔬 Department of Physics – Quantum Materials Research Group
-        </div>
-
-        <hr>
-
-        <div class="command-input">
-            <span class="prompt">$</span>
-            <input type="text" id="terminalInput" class="fake-input" placeholder="type 'help' or 'clear'...">
-            <button id="runCmd">⏎ run</button>
-        </div>
-        <div id="dynamicOutput" style="margin-top: 0.8rem; margin-left: 1.5rem; font-family: monospace;"></div>
-
-        <footer>
-            [ Soumya's Portfolio – terminal edition ]<br>
-            <span class="blinking-cursor"></span>
-        </footer>
-    </div>
-</div>
-
-<script>
-    const inputField = document.getElementById('terminalInput');
-    const outputDiv = document.getElementById('dynamicOutput');
-    const runBtn = document.getElementById('runCmd');
-
-    function executeCommand(cmd) {
-        const lower = cmd.trim().toLowerCase();
-        if (lower === 'help') {
-            return 'Available commands: help, clear, pubs, patent, teaching, awards, about, contact, expertise, cv';
-        } else if (lower === 'clear') {
-            outputDiv.innerHTML = '';
-            return null;
-        } else if (lower === 'pubs') {
-            return '→ Distinguishing and Separating In-Plane Hall Responses (arXiv:2604.20227, 2026)\n→ Nematic Order (PRX 2026)\n→ Nonlinear Hall altermagnet (arXiv, 2025)\n→ In-plane Hall effect (NatComm 2025)\n→ Berry curvature quadrupole (PRX 2024)';
-        } else if (lower === 'patent') {
-            return '📄 Circuit and measurement design for sensing magnetic fields using the anomalous in-plane Hall effect.\n   Provisional patent application filed – Inventor: Soumya Sankar';
-        } else if (lower === 'teaching') {
-            return 'TA: PHYS 3152 (2021-23), PHYS 1314 (2022-23), PHYS 1003 (2023-24)';
-        } else if (lower === 'awards') {
-            return '🏆 UGC Travel Grant (2024,2023) | HKUST PGS (2021-2025) | Indo-Max Planck Fellowship';
-        } else if (lower === 'about') {
-            return 'Experimental quantum materials physicist. Ph.D. candidate at HKUST studying topological kagome and altermagnetic systems.';
-        } else if (lower === 'contact') {
-            return 'Email: ssankar@connect.ust.hk | Location: HKUST, Hong Kong';
-        } else if (lower === 'expertise') {
-            return 'MBE, nanofabrication, magnetotransport, nonlinear Hall, Berry curvature, kagome & altermagnet thin films.';
-        } else if (lower === 'cv') {
-            return 'Full CV available upon request. Email me.';
-        } else {
-            return `Command not found: ${cmd}. Try 'help'.`;
-        }
-    }
-
-    function handleCommand() {
-        const raw = inputField.value;
-        if (!raw.trim()) return;
-        const output = executeCommand(raw);
-        if (output !== null) {
-            const newLine = document.createElement('div');
-            newLine.innerHTML = `<span style="color:#6fcf97;">$></span> ${raw}<br><span style="color:#a3e635;">${output.replace(/\n/g,'<br>')}</span>`;
-            outputDiv.appendChild(newLine);
-            outputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-        inputField.value = '';
-    }
-
-    runBtn.addEventListener('click', handleCommand);
-    inputField.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleCommand();
-    });
-
-    outputDiv.innerHTML = '<div><span style="color:#6fcf97;">$></span> <span style="color:#aaa;">Type "help" to see available commands. Try "pubs" or "patent".</span></div>';
-</script>
 </body>
 </html>
