@@ -609,6 +609,7 @@
             border: 2px solid rgba(167, 139, 250, 0.2);
             transition: all 0.4s ease;
             object-fit: cover;
+            background: #2a2640; /* fallback background */
         }
         .supervision-card .avatar-img:hover {
             transform: scale(1.08);
@@ -799,11 +800,10 @@
         <div class="container">
             <div class="hero-content">
                 <div class="profile-wrapper">
-                    <!-- Replace 'photo.jpg' with your actual image -->
-                    <img src="photo.jpg" alt="Dr. Soumya Sankar" class="profile-photo" />
+                    <!-- YOUR PROFILE PHOTO (fallback to avatar if missing) -->
+                    <img src="photo.jpg" alt="Dr. Soumya Sankar" class="profile-photo" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Soumya+Sankar&background=6c63ff&color=fff&size=150&bold=true';" />
                 </div>
                 <h1>Dr. <span class="highlight">Soumya Sankar</span></h1>
-                <!-- ✦ UPDATED: added Artificial Intelligence -->
                 <p class="subtitle">Quantum Matter · Thin Films · Topological Materials · Artificial Intelligence</p>
                 <div class="typing-wrapper">
                     <span id="typed-text"></span><span class="cursor"></span>
@@ -860,58 +860,57 @@
         </div>
     </section>
 
-    <!-- ===== SUPERVISION & MENTORSHIP (formerly Mentoring & Collaborators) ===== -->
+    <!-- ===== SUPERVISION & MENTORSHIP ===== -->
     <section id="supervision" class="page-section">
         <div class="container">
-            <!-- ✦ UPDATED: Section title -->
             <h2 class="section-title reveal">Supervision &amp; Mentorship</h2>
             <div class="supervision-grid">
                 <!-- Raghutheja Bollampally -->
                 <div class="supervision-card glass-card reveal">
-                    <img src="https://ui-avatars.com/api/?name=Raghutheja+Bollampally&background=6c63ff&color=fff&size=80&bold=true" alt="Raghutheja" class="avatar-img" />
+                    <img src="raghutheja.jpg" alt="Raghutheja" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Raghutheja+Bollampally&background=6c63ff&color=fff&size=80&bold=true';" />
                     <h4>Raghutheja Bollampally</h4>
                     <div class="role">UG at HKUST</div>
                     <p>→ Graduate student at <strong>KU Leuven</strong>, Belgium</p>
                 </div>
                 <!-- Yuqi Qin -->
                 <div class="supervision-card glass-card reveal">
-                    <img src="https://ui-avatars.com/api/?name=Yuqi+Qin&background=ec4899&color=fff&size=80&bold=true" alt="Yuqi Qin" class="avatar-img" />
+                    <img src="yuqi.jpg" alt="Yuqi Qin" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Yuqi+Qin&background=ec4899&color=fff&size=80&bold=true';" />
                     <h4>Yuqi Qin</h4>
                     <div class="role">UG at HUST, China</div>
                     <p>→ PhD student at <strong>HKUST Physics</strong></p>
                 </div>
                 <!-- Ce Zheng -->
                 <div class="supervision-card glass-card reveal">
-                    <img src="https://ui-avatars.com/api/?name=Ce+Zheng&background=6366f1&color=fff&size=80&bold=true" alt="Ce Zheng" class="avatar-img" />
+                    <img src="ce.jpg" alt="Ce Zheng" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ce+Zheng&background=6366f1&color=fff&size=80&bold=true';" />
                     <h4>Ce Zheng</h4>
                     <div class="role">UG at HKUST</div>
                     <p>→ MPhil student at <strong>HKUST Physics</strong></p>
                 </div>
                 <!-- Dominic Huang -->
                 <div class="supervision-card glass-card reveal">
-                    <img src="https://ui-avatars.com/api/?name=Dominic+Huang&background=8b5cf6&color=fff&size=80&bold=true" alt="Dominic Huang" class="avatar-img" />
+                    <img src="dominic.jpg" alt="Dominic Huang" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Dominic+Huang&background=8b5cf6&color=fff&size=80&bold=true';" />
                     <h4>Dominic Huang</h4>
                     <div class="role">UG at HKUST</div>
                     <p>Current undergraduate researcher</p>
                 </div>
                 <!-- Fanjiang Yei -->
                 <div class="supervision-card glass-card reveal">
-                    <img src="https://ui-avatars.com/api/?name=Fanjiang+Yei&background=a855f7&color=fff&size=80&bold=true" alt="Fanjiang Yei" class="avatar-img" />
+                    <img src="fanjiang.jpg" alt="Fanjiang Yei" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fanjiang+Yei&background=a855f7&color=fff&size=80&bold=true';" />
                     <h4>Fanjiang Yei</h4>
                     <div class="role">UG at USTC</div>
                     <p>→ PhD student at <strong>Rice University</strong>, CS</p>
                 </div>
-                <!-- Faith Hsin Lin (as requested) -->
+                <!-- Faith Hsin Lin -->
                 <div class="supervision-card glass-card reveal highlight-border">
-                    <img src="https://ui-avatars.com/api/?name=Faith+Hsin+Lin&background=ec4899&color=fff&size=80&bold=true" alt="Faith Hsin Lin" class="avatar-img" />
+                    <img src="faith.jpg" alt="Faith Hsin Lin" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Faith+Hsin+Lin&background=ec4899&color=fff&size=80&bold=true';" />
                     <h4>Faith Hsin Lin</h4>
                     <div class="role">UG at HKUST</div>
                     <p>Quantum computing researcher at <strong>Shanghai</strong></p>
                     <span class="badge" style="background:rgba(167,139,250,0.2); color:#c4b5fd;"><i class="fas fa-rocket"></i> Quantum · Shanghai</span>
                 </div>
-                <!-- ✦ NEW: Yizhou Wei -->
+                <!-- Yizhou Wei -->
                 <div class="supervision-card glass-card reveal highlight-border">
-                    <img src="https://ui-avatars.com/api/?name=Yizhou+Wei&background=6d28d9&color=fff&size=80&bold=true" alt="Yizhou Wei" class="avatar-img" />
+                    <img src="yizhou.jpg" alt="Yizhou Wei" class="avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Yizhou+Wei&background=6d28d9&color=fff&size=80&bold=true';" />
                     <h4>Yizhou Wei</h4>
                     <div class="role">RA at HKUST</div>
                     <p>→ PhD student at <strong>HKUST</strong></p>
@@ -1007,7 +1006,6 @@
                 <span class="tech-tag"><strong>Low-Temp:</strong> He⁴ (1.5K), He³ (300mK), Hall, I-V</span>
                 <span class="tech-tag"><strong>Software:</strong> Python, MATLAB, LabVIEW</span>
                 <span class="tech-tag"><strong>Materials:</strong> Semiconductors, Metals, Thin Films</span>
-                <!-- ✦ MACHINE LEARNING HIGHLIGHTED -->
                 <span class="tech-tag ml-highlight"><strong>Machine Learning (ML &amp; AI):</strong> Supervised Learning, CNN</span>
             </div>
         </div>
