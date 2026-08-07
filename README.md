@@ -1,2 +1,0 @@
-# ssankar.github.io
- portfolio
